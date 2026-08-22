@@ -1,0 +1,99 @@
+version: "3.9"
+
+services:
+  # ── Chess Backend ────────────────────────────────────────
+  backend:
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile
+    container_name: chesstong-backend
+    restart: unless-stopped
+    environment:
+      PORT: "8080"
+      HOST: "0.0.0.0"
+      NODE_ENV: "production"
+      OLLAMA_BASE_URL: "http://ollama:11434"
+      OLLAMA_MODEL: "qwen3:8b"
+      STOCKFISH_SERVICE_URL: "http://engine:8081"
+      DOMAIN: "chesstong.com"
+    env_file:
+      - ../../backend/.env.production
+    volumes:
+      - db-data:/app/data
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - engine
+      - ollama
+    networks:
+      - chesstong-net
+
+  # ── Stockfish Engine Service ─────────────────────────────
+  engine:
+    build:
+      context: ../../engine_service
+    container_name: chesstong-engine
+    restart: unless-stopped
+    environment:
+      PORT: "8081"
+      HOST: "0.0.0.0"
+      STOCKFISH_BIN: "/usr/games/stockfish"
+    ports:
+      - "127.0.0.1:8081:8081"
+    networks:
+      - chesstong-net
+
+  # ── Ollama (AI Explanations) ─────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: chesstong-ollama
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - chesstong-net
+    # After first start, pull the model:
+    # docker exec chesstong-ollama ollama pull qwen3:8b
+
+  # ── Nginx Reverse Proxy ──────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: chesstong-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../nginx/chesstong.com.conf:/etc/nginx/conf.d/chesstong.com.conf:ro
+      - certbot-www:/var/www/certbot:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    networks:
+      - chesstong-net
+
+  # ── Certbot (SSL certificate renewals) ───────────────────
+  certbot:
+    image: certbot/certbot:latest
+    container_name: chesstong-certbot
+    volumes:
+      - certbot-www:/var/www/certbot
+      - certbot-etc:/etc/letsencrypt
+      - ./ssl:/etc/nginx/ssl
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew --quiet; done'"
+    networks:
+      - chesstong-net
+
+volumes:
+  db-data:
+  ollama-data:
+  certbot-www:
+  certbot-etc:
+
+networks:
+  chesstong-net:
+    driver: bridge

@@ -1,0 +1,24 @@
+﻿# Node
+node_modules/
+dist/
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Misc
+.env
+.DS_Store
+
+# Large Stockfish runtime assets
+# Keep these files locally, but do not commit them to GitHub (GitHub rejects
+# individual files larger than 100 MB). See README.md for setup instructions.
+/tools/stockfish/stockfish/stockfish-windows-x86-64-avx2.exe
+/tools/stockfish/stockfish/src/nn-c288c895ea92.nnue

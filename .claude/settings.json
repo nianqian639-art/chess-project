@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"/Users/daweijunwang/chess project/.claude/skills\")",
+      "Bash(npx tsx *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/health)",
+      "Bash(open \"http://localhost:8080/demo\")",
+      "Bash(pkill -f \"tsx.*src/index\")",
+      "Bash(curl -s http://localhost:8080/health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}\" http://localhost:8080/demo)",
+      "Bash(curl -s http://localhost:8080/demo)",
+      "Bash(chmod +x \"/Users/daweijunwang/chess project/backend/node_modules/.bin/\"*)"
+    ],
+    "additionalDirectories": [
+      "/Users/daweijunwang/chess project/.claude"
+    ]
+  }
+}

@@ -1,0 +1,350 @@
+{"kind":"deck","id":"pr/iwlypq","name":"Deck"}
+{"kind":"layout","layoutId":"2dcd4d3a-f220-4c91-bb7a-1ca568061565","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"bcd46b6d-e2c5-441d-8250-f03204541732","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/baek5p","slide":1,"title":"CHESSTONG / 棋童","textShapes":9}
+{"kind":"textbox","id":"sh/21c3md4r","slide":1,"text":"CHESSTONG / 棋童","textPreview":"CHESSTONG / 棋童","textChars":14,"textLines":1,"bbox":[64,46,420,28]}
+{"kind":"textbox","id":"sh/p432xs3i","slide":1,"text":"我做了一个让初学者听懂每一步棋的平台","textPreview":"我做了一个让初学者听懂每一步棋的平台","textChars":18,"textLines":1,"bbox":[64,150,820,120]}
+{"kind":"textbox","id":"sh/o3ulonmx","slide":1,"text":"高中生独立制作 · AI 国际象棋学习平台 · Maker Portfolio 参考底稿","textPreview":"高中生独立制作 · AI 国际象棋学习平台 · Maker Portfolio 参考底稿","textChars":44,"textLines":1,"bbox":[68,286,900,36]}
+{"kind":"shape","id":"sh/felkryl0","slide":1,"bbox":[900,94,270,430]}
+{"kind":"textbox","id":"sh/eds3it4v","slide":1,"text":"♞","textPreview":"♞","textChars":1,"textLines":1,"bbox":[930,115,210,180]}
+{"kind":"textbox","id":"sh/1032t836","slide":1,"text":"2:00","textPreview":"2:00","textChars":4,"textLines":1,"bbox":[930,314,210,70]}
+{"kind":"textbox","id":"sh/gzulk3ml","slide":1,"text":"不出镜 · 全程录屏","textPreview":"不出镜 · 全程录屏","textChars":10,"textLines":1,"bbox":[930,404,210,35]}
+{"kind":"textbox","id":"sh/za5k32lk","slide":1,"text":"动机  →  实机演示  →  技术  →  影响","textPreview":"动机  →  实机演示  →  技术  →  影响","textChars":25,"textLines":1,"bbox":[68,546,790,36]}
+{"kind":"textbox","id":"sh/y9w3ux4z","slide":1,"text":"目标：120 秒内证明“我为什么做、我做了什么、它真的能运行”。","textPreview":"目标：120 秒内证明“我为什么做、我做了什么、它真的能运行”。","textChars":32,"textLines":1,"bbox":[68,595,860,32]}
+{"kind":"textbox","id":"sh/krq9cre5","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/baek5p","slide":1,"text":"00:00–00:12｜棋童是我为四到十岁国际象棋初学者制作的智能学习平台。我六岁开始学棋，发现真正让初学者放弃的，往往不是兴趣，而是听不懂专业术语，也看不到持续进步。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/teoqqe","slide":2,"title":"WHY","textShapes":13}
+{"kind":"textbox","id":"sh/dk3edwf6","slide":2,"text":"WHY","textPreview":"WHY","textChars":3,"textLines":1,"bbox":[64,42,520,24]}
+{"kind":"textbox","id":"sh/qhsfi1gf","slide":2,"text":"问题不是不会下，而是听不懂、难坚持","textPreview":"问题不是不会下，而是听不懂、难坚持","textChars":17,"textLines":1,"bbox":[64,78,1150,66]}
+{"kind":"textbox","id":"sh/bilwb6x0","slide":2,"text":"学生","textPreview":"学生","textChars":2,"textLines":1,"bbox":[70,238,180,32]}
+{"kind":"textbox","id":"sh/0nuxobyh","slide":2,"text":"“为什么这步错了？”","textPreview":"“为什么这步错了？”","textChars":10,"textLines":1,"bbox":[70,286,300,42]}
+{"kind":"textbox","id":"sh/lo3ehgf2","slide":2,"text":"传统题库只告诉对错，缺少学生能理解的解释。","textPreview":"传统题库只告诉对错，缺少学生能理解的解释。","textChars":21,"textLines":1,"bbox":[70,345,330,80]}
+{"kind":"textbox","id":"sh/ylcfm1gr","slide":2,"text":"家长","textPreview":"家长","textChars":2,"textLines":1,"bbox":[470,238,180,32]}
+{"kind":"textbox","id":"sh/zmlwf6xc","slide":2,"text":"“我不会棋，怎么陪？”","textPreview":"“我不会棋，怎么陪？”","textChars":11,"textLines":1,"bbox":[470,286,330,42]}
+{"kind":"textbox","id":"sh/8bexsvyt","slide":2,"text":"通过进度、周报和建议，家长不懂棋也能参与。","textPreview":"通过进度、周报和建议，家长不懂棋也能参与。","textChars":21,"textLines":1,"bbox":[470,345,320,80]}
+{"kind":"textbox","id":"sh/9cnylgfe","slide":2,"text":"老师","textPreview":"老师","textChars":2,"textLines":1,"bbox":[870,238,180,32]}
+{"kind":"textbox","id":"sh/dkfupsr2","slide":2,"text":"“课后练习如何追踪？”","textPreview":"“课后练习如何追踪？”","textChars":11,"textLines":1,"bbox":[870,286,330,42]}
+{"kind":"textbox","id":"sh/szmdw7ah","slide":2,"text":"作业、班级与学习数据形成可追踪的闭环。","textPreview":"作业、班级与学习数据形成可追踪的闭环。","textChars":19,"textLines":1,"bbox":[870,345,310,80]}
+{"kind":"shape","id":"sh/rydcn29w","slide":2,"bbox":[64,506,1152,90]}
+{"kind":"textbox","id":"sh/qx4vuxsb","slide":2,"text":"我的设计原则：反馈清楚、数据可追踪、关键依赖失效时系统仍然可用。","textPreview":"我的设计原则：反馈清楚、数据可追踪、关键依赖失效时系统仍然可用。","textChars":32,"textLines":1,"bbox":[98,532,1080,38]}
+{"kind":"textbox","id":"sh/1ofutcry","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/teoqqe","slide":2,"text":"00:12–00:27｜我把问题拆成三个角色：学生需要即时反馈；家长需要可读的学习数据；老师需要课后任务和班级追踪。我的设计原则，是让反馈清楚、让数据可追踪，并让系统在关键依赖不可用时仍然可用。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/g9hoyu","slide":3,"title":"PRODUCT","textShapes":34}
+{"kind":"textbox","id":"sh/jex4v2h0","slide":3,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[64,42,520,24]}
+{"kind":"textbox","id":"sh/4fq5onyl","slide":3,"text":"一个平台连接学习、对战与监督","textPreview":"一个平台连接学习、对战与监督","textChars":14,"textLines":1,"bbox":[64,78,1150,66]}
+{"kind":"textbox","id":"sh/5gzmxsz6","slide":3,"text":"录屏建议：先展示首页，再快速切到学习训练页。","textPreview":"录屏建议：先展示首页，再快速切到学习训练页。","textChars":22,"textLines":1,"bbox":[64,150,1120,40]}
+{"kind":"shape","id":"sh/6h8nqxgr","slide":3,"bbox":[64,214,760,390]}
+{"kind":"shape","id":"sh/rih4z2hc","slide":3,"bbox":[64,214,760,38]}
+{"kind":"textbox","id":"sh/s3q5s7yx","slide":3,"text":"●  ●  ●","textPreview":"●  ●  ●","textChars":7,"textLines":1,"bbox":[80,222,90,20]}
+{"kind":"textbox","id":"sh/t4zm1czi","slide":3,"text":"chesstong.com / 首页","textPreview":"chesstong.com / 首页","textChars":18,"textLines":1,"bbox":[184,222,620,20]}
+{"kind":"textbox","id":"sh/e58nuhgn","slide":3,"text":"♜ 棋童","textPreview":"♜ 棋童","textChars":4,"textLines":1,"bbox":[92,268,230,42]}
+{"kind":"textbox","id":"sh/f61o3mh8","slide":3,"text":"用棋童掌握国际象棋","textPreview":"用棋童掌握国际象棋","textChars":9,"textLines":1,"bbox":[92,326,520,54]}
+{"kind":"textbox","id":"sh/32l8bm94","slide":3,"text":"从开局原则到残局技巧，从 AI 对弈到真人 PK","textPreview":"从开局原则到残局技巧，从 AI 对弈到真人 PK","textChars":24,"textLines":1,"bbox":[92,388,600,32]}
+{"kind":"shape","id":"sh/i1srih8j","slide":3,"bbox":[92,448,170,52]}
+{"kind":"textbox","id":"sh/543qdwra","slide":3,"text":"开始训练","textPreview":"开始训练","textChars":4,"textLines":1,"bbox":[112,461,130,28]}
+{"kind":"textbox","id":"sh/43u9krqp","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[862,218,45,24]}
+{"kind":"textbox","id":"sh/vy187m98","slide":3,"text":"学习中心","textPreview":"学习中心","textChars":4,"textLines":1,"bbox":[915,218,125,24]}
+{"kind":"textbox","id":"sh/udsreh8n","slide":3,"text":"开局·中局·残局","textPreview":"开局·中局·残局","textChars":8,"textLines":1,"bbox":[1044,219,175,24]}
+{"kind":"textbox","id":"sh/h0jq9wry","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[862,267,45,24]}
+{"kind":"textbox","id":"sh/gza9grqd","slide":3,"text":"题库训练","textPreview":"题库训练","textChars":4,"textLines":1,"bbox":[915,267,125,24]}
+{"kind":"textbox","id":"sh/fu5sj69c","slide":3,"text":"300+分级题+错题复盘","textPreview":"300+分级题+错题复盘","textChars":12,"textLines":1,"bbox":[1044,268,175,24]}
+{"kind":"textbox","id":"sh/etwrq18r","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[862,316,45,24]}
+{"kind":"textbox","id":"sh/apgbi5sz","slide":3,"text":"AI讲解","textPreview":"AI讲解","textChars":4,"textLines":1,"bbox":[915,316,125,24]}
+{"kind":"textbox","id":"sh/bqpcratk","slide":3,"text":"四段式儿童化反馈","textPreview":"四段式儿童化反馈","textChars":8,"textLines":1,"bbox":[1044,317,175,24]}
+{"kind":"textbox","id":"sh/wrytkfa5","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[862,365,45,24]}
+{"kind":"textbox","id":"sh/xs7utkbq","slide":3,"text":"AI对弈","textPreview":"AI对弈","textChars":4,"textLines":1,"bbox":[915,365,125,24]}
+{"kind":"textbox","id":"sh/yt0vmpsv","slide":3,"text":"Stockfish 1–20级","textPreview":"Stockfish 1–20级","textChars":15,"textLines":1,"bbox":[1044,366,175,24]}
+{"kind":"textbox","id":"sh/ju9cvutg","slide":3,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[862,414,45,24]}
+{"kind":"textbox","id":"sh/kvidoza1","slide":3,"text":"实时对战","textPreview":"实时对战","textChars":4,"textLines":1,"bbox":[915,414,125,24]}
+{"kind":"textbox","id":"sh/lwruxkbm","slide":3,"text":"WebSocket+断线重连","textPreview":"WebSocket+断线重连","textChars":14,"textLines":1,"bbox":[1044,415,175,24]}
+{"kind":"textbox","id":"sh/exwbalsr","slide":3,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[862,463,45,24]}
+{"kind":"textbox","id":"sh/fy5cjqtc","slide":3,"text":"任务竞技","textPreview":"任务竞技","textChars":4,"textLines":1,"bbox":[915,463,125,24]}
+{"kind":"textbox","id":"sh/hov65sz6","slide":3,"text":"任务·积分·排行榜","textPreview":"任务·积分·排行榜","textChars":9,"textLines":1,"bbox":[1044,464,175,24]}
+{"kind":"textbox","id":"sh/g3m5cnyl","slide":3,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[862,512,45,24]}
+{"kind":"textbox","id":"sh/f2do3ih0","slide":3,"text":"家长老师","textPreview":"家长老师","textChars":4,"textLines":1,"bbox":[915,512,125,24]}
+{"kind":"textbox","id":"sh/u14nadgf","slide":3,"text":"周报·作业·班级追踪","textPreview":"周报·作业·班级追踪","textChars":10,"textLines":1,"bbox":[1044,513,175,24]}
+{"kind":"textbox","id":"sh/psf69sz2","slide":3,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[862,561,45,24]}
+{"kind":"textbox","id":"sh/4r65g7yh","slide":3,"text":"双端与部署","textPreview":"双端与部署","textChars":5,"textLines":1,"bbox":[915,561,125,24]}
+{"kind":"textbox","id":"sh/3qxo72hc","slide":3,"text":"Web+Flutter+Docker","textPreview":"Web+Flutter+Docker","textChars":18,"textLines":1,"bbox":[1044,562,175,24]}
+{"kind":"textbox","id":"sh/2ponexgr","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/g9hoyu","slide":3,"text":"00:27–00:42｜这是平台首页。用户可以进入学习中心、三百多道分级战术题、AI 对弈、真人对战、任务和排行榜；家长与老师还可以查看周报、布置作业并追踪进度。接下来我重点演示最核心的学习闭环。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/a6i8zr","slide":4,"title":"LIVE DEMO","textShapes":44}
+{"kind":"textbox","id":"sh/srmpgzqd","slide":4,"text":"LIVE DEMO","textPreview":"LIVE DEMO","textChars":9,"textLines":1,"bbox":[64,42,520,24]}
+{"kind":"textbox","id":"sh/7qd8nu9s","slide":4,"text":"实机演示：做题 → 判定 → 儿童化讲解","textPreview":"实机演示：做题 → 判定 → 儿童化讲解","textChars":20,"textLines":1,"bbox":[64,78,1150,66]}
+{"kind":"textbox","id":"sh/6p47ep87","slide":4,"text":"录屏建议：实际拖动一步棋，点击“提交”，再打开“AI讲解”。","textPreview":"录屏建议：实际拖动一步棋，点击“提交”，再打开“AI讲解”。","textChars":30,"textLines":1,"bbox":[64,150,1120,40]}
+{"kind":"shape","id":"sh/5ovqlkrm","slide":4,"bbox":[64,206,800,430]}
+{"kind":"shape","id":"sh/kn2pcfq1","slide":4,"bbox":[64,206,800,38]}
+{"kind":"textbox","id":"sh/jmt8ju9g","slide":4,"text":"●  ●  ●","textPreview":"●  ●  ●","textChars":7,"textLines":1,"bbox":[80,214,90,20]}
+{"kind":"textbox","id":"sh/ilk7ap8v","slide":4,"text":"学习训练 / 战术题","textPreview":"学习训练 / 战术题","textChars":10,"textLines":1,"bbox":[184,214,660,20]}
+{"kind":"shape","id":"sh/x0bqhkrq","slide":4,"bbox":[92,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/wz2p8fq5","slide":4,"text":"♜","textPreview":"♜","textChars":1,"textLines":1,"bbox":[92,267.49,38.75,31]}
+{"kind":"shape","id":"sh/ql4z6dcz","slide":4,"bbox":[130.75,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/rmd0zitk","slide":4,"text":"♞","textPreview":"♞","textChars":1,"textLines":1,"bbox":[130.75,267.49,38.75,31]}
+{"kind":"shape","id":"sh/snmh8nu5","slide":4,"bbox":[169.5,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/d8fi18bq","slide":4,"text":"♝","textPreview":"♝","textChars":1,"textLines":1,"bbox":[169.5,267.49,38.75,31]}
+{"kind":"shape","id":"sh/ih4z2tc3","slide":4,"bbox":[208.25,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/3id0vyto","slide":4,"text":"♛","textPreview":"♛","textChars":1,"textLines":1,"bbox":[208.25,267.49,38.75,31]}
+{"kind":"shape","id":"sh/4jmh43u9","slide":4,"bbox":[247,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/5kvix8be","slide":4,"text":"♚","textPreview":"♚","textChars":1,"textLines":1,"bbox":[247,267.49,38.75,31]}
+{"kind":"shape","id":"sh/udkzytcr","slide":4,"bbox":[285.75,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/vetgrytc","slide":4,"text":"♝","textPreview":"♝","textChars":1,"textLines":1,"bbox":[285.75,267.49,38.75,31]}
+{"kind":"shape","id":"sh/ji9wzu94","slide":4,"bbox":[324.5,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/yx0f6psj","slide":4,"text":"♞","textPreview":"♞","textChars":1,"textLines":1,"bbox":[324.5,267.49,38.75,31]}
+{"kind":"shape","id":"sh/lkre1kra","slide":4,"bbox":[363.25,264,38.75,38.75]}
+{"kind":"textbox","id":"sh/kjix8zap","slide":4,"text":"♜","textPreview":"♜","textChars":1,"textLines":1,"bbox":[363.25,267.49,38.75,31]}
+{"kind":"shape","id":"sh/7m9w3u9g","slide":4,"bbox":[92,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/6l0fapsv","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[92,306.24,38.75,31]}
+{"kind":"shape","id":"sh/tore54r6","slide":4,"bbox":[130.75,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/8nixcza1","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[130.75,306.24,38.75,31]}
+{"kind":"shape","id":"sh/nqpwra9w","slide":4,"bbox":[169.5,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/mpwvy5sr","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[169.5,306.24,38.75,31]}
+{"kind":"shape","id":"sh/cvut8bq9","slide":4,"bbox":[208.25,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/dw3u1g7u","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[208.25,306.24,38.75,31]}
+{"kind":"shape","id":"sh/qtcb618j","slide":4,"bbox":[247,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/rulcz6po","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[247,306.24,38.75,31]}
+{"kind":"shape","id":"sh/47ut4rqd","slide":4,"bbox":[285.75,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/583uxw7y","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[285.75,306.24,38.75,31]}
+{"kind":"shape","id":"sh/i5sb2h87","slide":4,"bbox":[324.5,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/361cvmps","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[324.5,306.24,38.75,31]}
+{"kind":"shape","id":"sh/o3etgvqh","slide":4,"bbox":[363.25,302.75,38.75,38.75]}
+{"kind":"textbox","id":"sh/9onu9072","slide":4,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[363.25,306.24,38.75,31]}
+{"kind":"shape","id":"sh/lwfiloj2","slide":4,"bbox":[92,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/kv6hcj2x","slide":4,"bbox":[130.75,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/zux0je1c","slide":4,"bbox":[169.5,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/yt4za9kr","slide":4,"bbox":[208.25,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/90fip8je","slide":4,"bbox":[247,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/8z6hg32t","slide":4,"bbox":[285.75,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/7yx0ny18","slide":4,"bbox":[324.5,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/mxozetkn","slide":4,"bbox":[363.25,341.5,38.75,38.75]}
+{"kind":"shape","id":"sh/hozit8ja","slide":4,"bbox":[92,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/wnqhk325","slide":4,"bbox":[130.75,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/e90fe507","slide":4,"bbox":[169.5,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/fa9w7ahs","slide":4,"bbox":[208.25,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/0b2xgfid","slide":4,"bbox":[247,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/1cbe9kzy","slide":4,"bbox":[285.75,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/2dkfip0j","slide":4,"bbox":[324.5,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/nytwbah4","slide":4,"bbox":[363.25,380.25,38.75,38.75]}
+{"kind":"shape","id":"sh/oz2xkfip","slide":4,"bbox":[92,419,38.75,38.75]}
+{"kind":"shape","id":"sh/p0bedkzu","slide":4,"bbox":[130.75,419,38.75,38.75]}
+{"kind":"shape","id":"sh/a1kfmp0f","slide":4,"bbox":[169.5,419,38.75,38.75]}
+{"kind":"shape","id":"sh/b2dgfuh0","slide":4,"bbox":[208.25,419,38.75,38.75]}
+{"kind":"shape","id":"sh/76dw3ux8","slide":4,"bbox":[247,419,38.75,38.75]}
+{"kind":"shape","id":"sh/m54vapwn","slide":4,"bbox":[285.75,419,38.75,38.75]}
+{"kind":"shape","id":"sh/98ve54fe","slide":4,"bbox":[324.5,419,38.75,38.75]}
+{"kind":"shape","id":"sh/87mdczet","slide":4,"bbox":[363.25,419,38.75,38.75]}
+{"kind":"shape","id":"sh/z2dwzuxc","slide":4,"bbox":[92,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/y1kv6pwr","slide":4,"bbox":[130.75,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/l4ve1kf2","slide":4,"bbox":[169.5,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/k3md8feh","slide":4,"bbox":[208.25,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/betwvax0","slide":4,"bbox":[247,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/adkv25gf","slide":4,"bbox":[285.75,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/0jitcbud","slide":4,"bbox":[324.5,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/1kra5gvy","slide":4,"bbox":[363.25,457.75,38.75,38.75]}
+{"kind":"shape","id":"sh/ehgba1c7","slide":4,"bbox":[92,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/fips36ds","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[92,499.99,38.75,31]}
+{"kind":"shape","id":"sh/o7itgvu9","slide":4,"bbox":[130.75,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/p8ru9gvu","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[130.75,499.99,38.75,31]}
+{"kind":"shape","id":"sh/2l0belcj","slide":4,"bbox":[169.5,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/n69s7qd4","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[169.5,499.99,38.75,31]}
+{"kind":"shape","id":"sh/4byt4re5","slide":4,"bbox":[208.25,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/5c7axwvq","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[208.25,499.99,38.75,31]}
+{"kind":"shape","id":"sh/9g3q5sbi","slide":4,"bbox":[247,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/8vupwnux","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[247,499.99,38.75,31]}
+{"kind":"shape","id":"sh/7ul83itc","slide":4,"bbox":[285.75,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/mtc7udcr","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[285.75,499.99,38.75,31]}
+{"kind":"shape","id":"sh/ls3q18b6","slide":4,"bbox":[324.5,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/krapsnu1","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[324.5,499.99,38.75,31]}
+{"kind":"shape","id":"sh/zq18zitg","slide":4,"bbox":[363.25,496.5,38.75,38.75]}
+{"kind":"textbox","id":"sh/yps7qdcv","slide":4,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[363.25,499.99,38.75,31]}
+{"kind":"shape","id":"sh/5onqdcbq","slide":4,"bbox":[92,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/4ne947a5","slide":4,"text":"♖","textPreview":"♖","textChars":1,"textLines":1,"bbox":[92,538.74,38.75,31]}
+{"kind":"shape","id":"sh/2hovi5ob","slide":4,"bbox":[130.75,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/3ixwba5w","slide":4,"text":"♘","textPreview":"♘","textChars":1,"textLines":1,"bbox":[130.75,538.74,38.75,31]}
+{"kind":"shape","id":"sh/oj6dkf6h","slide":4,"bbox":[169.5,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/pkfedkn2","slide":4,"text":"♗","textPreview":"♗","textChars":1,"textLines":1,"bbox":[169.5,538.74,38.75,31]}
+{"kind":"shape","id":"sh/et4ve5of","slide":4,"bbox":[208.25,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/fudw7a50","slide":4,"text":"♕","textPreview":"♕","textChars":1,"textLines":1,"bbox":[208.25,538.74,38.75,31]}
+{"kind":"shape","id":"sh/gfmdgf65","slide":4,"bbox":[247,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/1gfe9knq","slide":4,"text":"♔","textPreview":"♔","textChars":1,"textLines":1,"bbox":[247,538.74,38.75,31]}
+{"kind":"shape","id":"sh/yp8fqp4j","slide":4,"bbox":[285.75,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/zqhwju54","slide":4,"text":"♗","textPreview":"♗","textChars":1,"textLines":1,"bbox":[285.75,538.74,38.75,31]}
+{"kind":"shape","id":"sh/0ruhcn2l","slide":4,"bbox":[324.5,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/ls3i5836","slide":4,"text":"♘","textPreview":"♘","textChars":1,"textLines":1,"bbox":[324.5,538.74,38.75,31]}
+{"kind":"shape","id":"sh/ypszadkf","slide":4,"bbox":[363.25,535.25,38.75,38.75]}
+{"kind":"textbox","id":"sh/zql03il0","slide":4,"text":"♖","textPreview":"♖","textChars":1,"textLines":1,"bbox":[363.25,538.74,38.75,31]}
+{"kind":"textbox","id":"sh/cnah832p","slide":4,"text":"白方走 · 找到最佳着法","textPreview":"白方走 · 找到最佳着法","textChars":12,"textLines":1,"bbox":[438,270,350,34]}
+{"kind":"textbox","id":"sh/doji183a","slide":4,"text":"提示：先观察对方国王周围的防守子力。","textPreview":"提示：先观察对方国王周围的防守子力。","textChars":18,"textLines":1,"bbox":[438,320,340,62]}
+{"kind":"shape","id":"sh/q1sz6tkj","slide":4,"bbox":[438,408,145,50]}
+{"kind":"textbox","id":"sh/b210zyl4","slide":4,"text":"提交答案","textPreview":"提交答案","textChars":4,"textLines":1,"bbox":[451,420,120,26]}
+{"kind":"shape","id":"sh/wjehk72t","slide":4,"bbox":[602,408,145,50]}
+{"kind":"textbox","id":"sh/xknids3e","slide":4,"text":"AI 讲解","textPreview":"AI 讲解","textChars":5,"textLines":1,"bbox":[615,420,120,26]}
+{"kind":"shape","id":"sh/7epkj65g","slide":4,"bbox":[900,222,300,366]}
+{"kind":"textbox","id":"sh/6dg3a14v","slide":4,"text":"AI 不只说“错了”","textPreview":"AI 不只说“错了”","textChars":10,"textLines":1,"bbox":[928,253,246,34]}
+{"kind":"textbox","id":"sh/tgr2lwnm","slide":4,"text":"① 思路\n先找将军与强制着法\n\n② 关键点\n这个棋子像被钉在原地\n\n③ 常见误区\n不要只看眼前吃子\n\n④ 下一步\n再做一道同主题题目","textPreview":"① 思路 | 先找将军与强制着法 |  | ② 关键点 | 这个棋子像被钉在原地 |  | ③ 常见误区 | 不要只看眼前吃子 |  | ④ 下一步 | 再做一道同主题题目","textChars":66,"textLines":11,"bbox":[928,310,240,240]}
+{"kind":"textbox","id":"sh/sfylcrm1","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/a6i8zr","slide":4,"text":"00:42–01:07｜我选择一道战术题，直接在棋盘上走子并提交。系统先判断答案，再让 AI 用四段结构解释：思路、关键点、常见误区和下一步。比如“牵制”不会只给定义，而会解释成：这个棋子后面保护着更重要的棋子，就像被钉在原地一样。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/4njo6f","slide":5,"title":"LIVE DEMO","textShapes":46}
+{"kind":"textbox","id":"sh/58v6x4zu","slide":5,"text":"LIVE DEMO","textPreview":"LIVE DEMO","textChars":9,"textLines":1,"bbox":[64,42,520,24]}
+{"kind":"textbox","id":"sh/i54nmpg3","slide":5,"text":"实机演示：Stockfish 给出走法，LLM 解释原因","textPreview":"实机演示：Stockfish 给出走法，LLM 解释原因","textChars":28,"textLines":1,"bbox":[64,78,1150,66]}
+{"kind":"textbox","id":"sh/j6dovuho","slide":5,"text":"录屏建议：进入 AI 对弈，调难度，点击“走法建议”，展示返回结果。","textPreview":"录屏建议：进入 AI 对弈，调难度，点击“走法建议”，展示返回结果。","textChars":34,"textLines":1,"bbox":[64,150,1120,40]}
+{"kind":"shape","id":"sh/wj25kzyx","slide":5,"bbox":[64,210,770,416]}
+{"kind":"shape","id":"sh/hkb6tkzi","slide":5,"bbox":[64,210,770,38]}
+{"kind":"textbox","id":"sh/uhknipg7","slide":5,"text":"●  ●  ●","textPreview":"●  ●  ●","textChars":7,"textLines":1,"bbox":[80,218,90,20]}
+{"kind":"textbox","id":"sh/vitoruhs","slide":5,"text":"AI 对弈 / 走法建议","textPreview":"AI 对弈 / 走法建议","textChars":12,"textLines":1,"bbox":[184,218,630,20]}
+{"kind":"shape","id":"sh/gf6pwjyh","slide":5,"bbox":[92,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/1gf65of2","slide":5,"text":"♜","textPreview":"♜","textChars":1,"textLines":1,"bbox":[92,268.38,37.5,30]}
+{"kind":"shape","id":"sh/lc3ixgvq","slide":5,"bbox":[129.5,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/kbuhobel","slide":5,"text":"♞","textPreview":"♞","textChars":1,"textLines":1,"bbox":[129.5,268.38,37.5,30]}
+{"kind":"shape","id":"sh/zal0v6d0","slide":5,"bbox":[167,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/y9czm1wf","slide":5,"text":"♝","textPreview":"♝","textChars":1,"textLines":1,"bbox":[167,268.38,37.5,30]}
+{"kind":"shape","id":"sh/x83ytwvu","slide":5,"bbox":[204.5,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/c7uhkre9","slide":5,"text":"♛","textPreview":"♛","textChars":1,"textLines":1,"bbox":[204.5,268.38,37.5,30]}
+{"kind":"shape","id":"sh/b6lgr6do","slide":5,"bbox":[242,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/a5czi1w3","slide":5,"text":"♚","textPreview":"♚","textChars":1,"textLines":1,"bbox":[242,268.38,37.5,30]}
+{"kind":"shape","id":"sh/h47i50vy","slide":5,"bbox":[279.5,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/w3ehwvud","slide":5,"text":"♝","textPreview":"♝","textChars":1,"textLines":1,"bbox":[279.5,268.38,37.5,30]}
+{"kind":"shape","id":"sh/0j6to361","slide":5,"bbox":[317,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/1kfah87m","slide":5,"text":"♞","textPreview":"♞","textChars":1,"textLines":1,"bbox":[317,268.38,37.5,30]}
+{"kind":"shape","id":"sh/ehobmtov","slide":5,"bbox":[354.5,265,37.5,37.5]}
+{"kind":"textbox","id":"sh/fixsfypg","slide":5,"text":"♜","textPreview":"♜","textChars":1,"textLines":1,"bbox":[354.5,268.38,37.5,30]}
+{"kind":"shape","id":"sh/sv6tkj6p","slide":5,"bbox":[92,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/dwfado7a","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[92,305.87,37.5,30]}
+{"kind":"shape","id":"sh/qt4bi9oz","slide":5,"bbox":[129.5,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/ruxsbepk","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[129.5,305.87,37.5,30]}
+{"kind":"shape","id":"sh/4rm9gj6t","slide":5,"bbox":[167,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/5sva9o7e","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[167,305.87,37.5,30]}
+{"kind":"shape","id":"sh/7mtcje90","slide":5,"bbox":[204.5,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/6lkbq9sf","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[204.5,305.87,37.5,30]}
+{"kind":"shape","id":"sh/tovul4r6","slide":5,"bbox":[242,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/8nmtsjal","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[242,305.87,37.5,30]}
+{"kind":"shape","id":"sh/vqdcne9c","slide":5,"bbox":[279.5,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/up4bu9sr","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[279.5,305.87,37.5,30]}
+{"kind":"shape","id":"sh/hsvupor2","slide":5,"bbox":[317,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/grmtwjax","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[317,305.87,37.5,30]}
+{"kind":"shape","id":"sh/3uxcry98","slide":5,"bbox":[354.5,302.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/it4bytsn","slide":5,"text":"♟","textPreview":"♟","textChars":1,"textLines":1,"bbox":[354.5,305.87,37.5,30]}
+{"kind":"shape","id":"sh/2xcvuxgz","slide":5,"bbox":[92,340,37.5,37.5]}
+{"kind":"shape","id":"sh/3y5w32hk","slide":5,"bbox":[129.5,340,37.5,37.5]}
+{"kind":"shape","id":"sh/ozedw7y5","slide":5,"bbox":[167,340,37.5,37.5]}
+{"kind":"shape","id":"sh/p0ne5czq","slide":5,"bbox":[204.5,340,37.5,37.5]}
+{"kind":"shape","id":"sh/q1wvyhgv","slide":5,"bbox":[242,340,37.5,37.5]}
+{"kind":"shape","id":"sh/bm5w72hg","slide":5,"bbox":[279.5,340,37.5,37.5]}
+{"kind":"shape","id":"sh/cned07y1","slide":5,"bbox":[317,340,37.5,37.5]}
+{"kind":"shape","id":"sh/done9czm","slide":5,"bbox":[354.5,340,37.5,37.5]}
+{"kind":"shape","id":"sh/65svmd0r","slide":5,"bbox":[92,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/rq1wvihc","slide":5,"bbox":[129.5,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/9kry1gju","slide":5,"bbox":[167,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/8jihsbi9","slide":5,"bbox":[204.5,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/ni9gz61o","slide":5,"bbox":[242,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/mhgzq103","slide":5,"bbox":[279.5,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/xory50jq","slide":5,"bbox":[317,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/wnihwvil","slide":5,"bbox":[354.5,377.5,37.5,37.5]}
+{"kind":"shape","id":"sh/vm9g3q10","slide":5,"bbox":[92,415,37.5,37.5]}
+{"kind":"shape","id":"sh/al0zul0f","slide":5,"bbox":[129.5,415,37.5,37.5]}
+{"kind":"shape","id":"sh/ds7ytwjm","slide":5,"bbox":[167,415,37.5,37.5]}
+{"kind":"shape","id":"sh/cryxkri1","slide":5,"bbox":[204.5,415,37.5,37.5]}
+{"kind":"shape","id":"sh/o72pwve9","slide":5,"bbox":[242,415,37.5,37.5]}
+{"kind":"shape","id":"sh/p8bqp0vu","slide":5,"bbox":[279.5,415,37.5,37.5]}
+{"kind":"shape","id":"sh/2lk7ulw3","slide":5,"bbox":[317,415,37.5,37.5]}
+{"kind":"shape","id":"sh/36t8nqdo","slide":5,"bbox":[354.5,415,37.5,37.5]}
+{"kind":"shape","id":"sh/cbmp0vu5","slide":5,"bbox":[92,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/dcvqt0vq","slide":5,"bbox":[129.5,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/q947y5wf","slide":5,"bbox":[167,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/bad8rad0","slide":5,"bbox":[204.5,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/0fm94fuh","slide":5,"bbox":[242,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/lgfqxkv2","slide":5,"bbox":[279.5,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/vahsnex4","slide":5,"bbox":[317,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/u98bu9wj","slide":5,"bbox":[354.5,452.5,37.5,37.5]}
+{"kind":"shape","id":"sh/hwzapofa","slide":5,"bbox":[92,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/wbqtwjep","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[92,493.38,37.5,30]}
+{"kind":"shape","id":"sh/76xsjex8","slide":5,"bbox":[129.5,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/m5obq9gn","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[129.5,493.38,37.5,30]}
+{"kind":"shape","id":"sh/98zal4fy","slide":5,"bbox":[167,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/876tszyd","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[167,493.38,37.5,30]}
+{"kind":"shape","id":"sh/r21cvyxc","slide":5,"bbox":[204.5,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/61sb2twr","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[204.5,493.38,37.5,30]}
+{"kind":"shape","id":"sh/2dozel0z","slide":5,"bbox":[242,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/3ex0nqh4","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[242,493.38,37.5,30]}
+{"kind":"shape","id":"sh/ofqhgvip","slide":5,"bbox":[279.5,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/pgzip0za","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[279.5,493.38,37.5,30]}
+{"kind":"shape","id":"sh/u9ozal0n","slide":5,"bbox":[317,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/fax0j6h8","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[317,493.38,37.5,30]}
+{"kind":"shape","id":"sh/gb6hcbit","slide":5,"bbox":[354.5,490,37.5,37.5]}
+{"kind":"textbox","id":"sh/1cfilgze","slide":5,"text":"♙","textPreview":"♙","textChars":1,"textLines":1,"bbox":[354.5,493.38,37.5,30]}
+{"kind":"shape","id":"sh/6l4z610r","slide":5,"bbox":[92,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/76d0f6hc","slide":5,"text":"♖","textPreview":"♖","textChars":1,"textLines":1,"bbox":[92,530.87,37.5,30]}
+{"kind":"shape","id":"sh/9032l4ju","slide":5,"bbox":[129.5,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/8zulcz29","slide":5,"text":"♘","textPreview":"♘","textChars":1,"textLines":1,"bbox":[129.5,530.87,37.5,30]}
+{"kind":"shape","id":"sh/nylkju1o","slide":5,"bbox":[167,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/mxs3a9k3","slide":5,"text":"♗","textPreview":"♗","textChars":1,"textLines":1,"bbox":[167,530.87,37.5,30]}
+{"kind":"shape","id":"sh/lwj2h4ji","slide":5,"bbox":[204.5,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/0bal8z2x","slide":5,"text":"♕","textPreview":"♕","textChars":1,"textLines":1,"bbox":[204.5,530.87,37.5,30]}
+{"kind":"shape","id":"sh/za1kfu1c","slide":5,"bbox":[242,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/y9s36pk7","slide":5,"text":"♔","textPreview":"♔","textChars":1,"textLines":1,"bbox":[242,530.87,37.5,30]}
+{"kind":"shape","id":"sh/d8j2dkjm","slide":5,"bbox":[279.5,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/c7al4f21","slide":5,"text":"♗","textPreview":"♗","textChars":1,"textLines":1,"bbox":[279.5,530.87,37.5,30]}
+{"kind":"shape","id":"sh/pkzu90z6","slide":5,"bbox":[317,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/ojqdgvil","slide":5,"text":"♘","textPreview":"♘","textChars":1,"textLines":1,"bbox":[317,530.87,37.5,30]}
+{"kind":"shape","id":"sh/nihc7qh0","slide":5,"bbox":[354.5,527.5,37.5,37.5]}
+{"kind":"textbox","id":"sh/2x8bel0f","slide":5,"text":"♖","textPreview":"♖","textChars":1,"textLines":1,"bbox":[354.5,530.87,37.5,30]}
+{"kind":"textbox","id":"sh/1wzu5gza","slide":5,"text":"难度  8 / 20","textPreview":"难度  8 / 20","textChars":10,"textLines":1,"bbox":[430,272,300,32]}
+{"kind":"shape","id":"sh/0vqtcbip","slide":5,"bbox":[430,326,310,14]}
+{"kind":"shape","id":"sh/fuxc36h4","slide":5,"bbox":[430,326,124,14]}
+{"kind":"shape","id":"sh/etoba10j","slide":5,"bbox":[430,375,200,52]}
+{"kind":"textbox","id":"sh/lsjuhkze","slide":5,"text":"获取走法建议","textPreview":"获取走法建议","textChars":6,"textLines":1,"bbox":[449,388,162,26]}
+{"kind":"textbox","id":"sh/kradofyt","slide":5,"text":"建议：Nf3","textPreview":"建议：Nf3","textChars":6,"textLines":1,"bbox":[430,468,260,38]}
+{"kind":"textbox","id":"sh/ilkjmdcz","slide":5,"text":"理由：发展轻子、控制中心，并为王车易位做准备。","textPreview":"理由：发展轻子、控制中心，并为王车易位做准备。","textChars":23,"textLines":1,"bbox":[430,516,330,70]}
+{"kind":"textbox","id":"sh/jmt0vitk","slide":5,"text":"引擎负责“算准”","textPreview":"引擎负责“算准”","textChars":8,"textLines":1,"bbox":[900,260,260,36]}
+{"kind":"textbox","id":"sh/kn21onu5","slide":5,"text":"Stockfish 搜索局面，输出最佳候选走法。","textPreview":"Stockfish 搜索局面，输出最佳候选走法。","textChars":24,"textLines":1,"bbox":[900,314,280,60]}
+{"kind":"textbox","id":"sh/5obixsbq","slide":5,"text":"模型负责“讲懂”","textPreview":"模型负责“讲懂”","textChars":8,"textLines":1,"bbox":[900,414,260,36]}
+{"kind":"textbox","id":"sh/ah0zidc3","slide":5,"text":"LLM 把评估结果转化为儿童能执行的建议。","textPreview":"LLM 把评估结果转化为儿童能执行的建议。","textChars":21,"textLines":1,"bbox":[900,468,280,70]}
+{"kind":"textbox","id":"sh/vit0ryto","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/4njo6f","slide":5,"text":"01:07–01:27｜在人机对战中，我可以调节 Stockfish 难度。点击走法建议后，引擎负责计算更准确的候选走法，大语言模型负责解释为什么。这样的工具协作，把“算得准”和“讲得懂”结合在一起。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/jmwtm4","slide":6,"title":"ENGINEERING","textShapes":20}
+{"kind":"textbox","id":"sh/76p4jyto","slide":6,"text":"ENGINEERING","textPreview":"ENGINEERING","textChars":11,"textLines":1,"bbox":[64,42,520,24]}
+{"kind":"textbox","id":"sh/8rylc3a9","slide":6,"text":"系统可以运行，也能在 AI 不可用时继续服务","textPreview":"系统可以运行，也能在 AI 不可用时继续服务","textChars":22,"textLines":1,"bbox":[64,78,1150,66]}
+{"kind":"shape","id":"sh/9s7ml8be","slide":6,"bbox":[224,335,88,8]}
+{"kind":"textbox","id":"sh/y1w36tcr","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[252,313,35,30]}
+{"kind":"shape","id":"sh/z254fytc","slide":6,"bbox":[70,274,170,150]}
+{"kind":"textbox","id":"sh/k3el83ux","slide":6,"text":"Web / Flutter","textPreview":"Web / Flutter","textChars":13,"textLines":1,"bbox":[82,306,146,34]}
+{"kind":"textbox","id":"sh/l4nmh8bi","slide":6,"text":"交互界面","textPreview":"交互界面","textChars":4,"textLines":1,"bbox":[82,354,146,27]}
+{"kind":"shape","id":"sh/ix03ixsb","slide":6,"bbox":[474,335,88,8]}
+{"kind":"textbox","id":"sh/jy94ritw","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[502,313,35,30]}
+{"kind":"shape","id":"sh/7618z2xc","slide":6,"bbox":[320,274,170,150]}
+{"kind":"textbox","id":"sh/658rqxwr","slide":6,"text":"Fastify","textPreview":"Fastify","textChars":7,"textLines":1,"bbox":[332,306,146,34]}
+{"kind":"textbox","id":"sh/t8ja1sfi","slide":6,"text":"REST + WS","textPreview":"REST + WS","textChars":9,"textLines":1,"bbox":[332,354,146,27]}
+{"kind":"shape","id":"sh/s7a9s7ex","slide":6,"bbox":[724,335,88,8]}
+{"kind":"textbox","id":"sh/fa1s32xo","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[752,313,35,30]}
+{"kind":"shape","id":"sh/u9sruxw3","slide":6,"bbox":[570,274,170,150]}
+{"kind":"textbox","id":"sh/hcja5cfe","slide":6,"text":"Stockfish","textPreview":"Stockfish","textChars":9,"textLines":1,"bbox":[582,306,146,34]}
+{"kind":"textbox","id":"sh/gba9w7et","slide":6,"text":"棋力计算","textPreview":"棋力计算","textChars":4,"textLines":1,"bbox":[582,354,146,27]}
+{"kind":"shape","id":"sh/3yls7mxk","slide":6,"bbox":[974,335,88,8]}
+{"kind":"textbox","id":"sh/2dsryhwz","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[1002,313,35,30]}
+{"kind":"shape","id":"sh/etwbqlg7","slide":6,"bbox":[820,274,170,150]}
+{"kind":"textbox","id":"sh/zu5czqhs","slide":6,"text":"Qwen / Ollama","textPreview":"Qwen / Ollama","textChars":13,"textLines":1,"bbox":[832,306,146,34]}
+{"kind":"textbox","id":"sh/0vedsbyd","slide":6,"text":"儿童化解释","textPreview":"儿童化解释","textChars":5,"textLines":1,"bbox":[832,354,146,27]}
+{"kind":"shape","id":"sh/1wnu1gzy","slide":6,"bbox":[1070,274,170,150]}
+{"kind":"textbox","id":"sh/q5wbm1gb","slide":6,"text":"SQLite WAL","textPreview":"SQLite WAL","textChars":10,"textLines":1,"bbox":[1082,306,146,34]}
+{"kind":"textbox","id":"sh/r65cv6hw","slide":6,"text":"学习记忆","textPreview":"学习记忆","textChars":4,"textLines":1,"bbox":[1082,354,146,27]}
+{"kind":"textbox","id":"sh/cretoby1","slide":6,"text":"4 级回退","textPreview":"4 级回退","textChars":5,"textLines":1,"bbox":[70,486,230,40]}
+{"kind":"textbox","id":"sh/dsnuxgzm","slide":6,"text":"Ollama → Qwen API → Stockfish → 本地规则","textPreview":"Ollama → Qwen API → Stockfish → 本地规则","textChars":36,"textLines":1,"bbox":[292,488,700,36]}
+{"kind":"textbox","id":"sh/a1gvy5gf","slide":6,"text":"关键词过滤 · 超时熔断 · 输出校验 · WebSocket 断线重连","textPreview":"关键词过滤 · 超时熔断 · 输出校验 · WebSocket 断线重连","textChars":36,"textLines":1,"bbox":[292,540,780,32]}
+{"kind":"textbox","id":"sh/b2pc7ah0","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/jmwtm4","slide":6,"text":"01:27–01:46｜技术上，前端通过 Fastify 和 WebSocket 连接 Stockfish、Qwen 或本地 Ollama，并用 SQLite 保存学习轨迹。为了让演示和真实使用都更稳定，我设计了四级回退：模型不可用时，系统仍能依靠 Stockfish 或本地规则继续反馈，同时加入超时、过滤和输出校验。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
+{"kind":"slide","id":"sl/3u2nbw","slide":7,"title":"WHAT I MADE","textShapes":15}
+{"kind":"textbox","id":"sh/v2pw3mps","slide":7,"text":"WHAT I MADE","textPreview":"WHAT I MADE","textChars":11,"textLines":1,"bbox":[64,48,300,24]}
+{"kind":"textbox","id":"sh/wnyxcrqd","slide":7,"text":"我做的不只是一个下棋网站","textPreview":"我做的不只是一个下棋网站","textChars":12,"textLines":1,"bbox":[64,104,890,64]}
+{"kind":"textbox","id":"sh/ho7e5w7i","slide":7,"text":"而是一座连接孩子、家长和老师的学习桥梁。","textPreview":"而是一座连接孩子、家长和老师的学习桥梁。","textChars":20,"textLines":1,"bbox":[64,174,1030,52]}
+{"kind":"textbox","id":"sh/ipgfe183","slide":7,"text":"300+","textPreview":"300+","textChars":4,"textLines":1,"bbox":[64,330,250,70]}
+{"kind":"textbox","id":"sh/jqpg76po","slide":7,"text":"分级战术题","textPreview":"分级战术题","textChars":5,"textLines":1,"bbox":[64,405,250,32]}
+{"kind":"textbox","id":"sh/4ryxgbq9","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[350,330,250,70]}
+{"kind":"textbox","id":"sh/5s7y9g7u","slide":7,"text":"AI 学习角色","textPreview":"AI 学习角色","textChars":7,"textLines":1,"bbox":[350,405,250,32]}
+{"kind":"textbox","id":"sh/ytcf2x8z","slide":7,"text":"4级","textPreview":"4级","textChars":2,"textLines":1,"bbox":[636,330,250,70]}
+{"kind":"textbox","id":"sh/zulwv2pk","slide":7,"text":"稳定回退","textPreview":"稳定回退","textChars":4,"textLines":1,"bbox":[636,405,250,32]}
+{"kind":"textbox","id":"sh/7upon2tk","slide":7,"text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[922,330,250,70]}
+{"kind":"textbox","id":"sh/6tg7ehsz","slide":7,"text":"Flutter 核心页面","textPreview":"Flutter 核心页面","textChars":12,"textLines":1,"bbox":[922,405,250,32]}
+{"kind":"textbox","id":"sh/tw76pcba","slide":7,"text":"优势：反馈清楚｜数据可追踪｜引擎与模型协作｜AI 失效仍可运行｜覆盖三类用户","textPreview":"优势：反馈清楚｜数据可追踪｜引擎与模型协作｜AI 失效仍可运行｜覆盖三类用户","textChars":38,"textLines":1,"bbox":[64,500,1140,38]}
+{"kind":"textbox","id":"sh/8vypg7a5","slide":7,"text":"下一步：收集真实用户反馈，评估解释质量，并扩展到更多课堂场景。","textPreview":"下一步：收集真实用户反馈，评估解释质量，并扩展到更多课堂场景。","textChars":31,"textLines":1,"bbox":[64,566,1100,36]}
+{"kind":"textbox","id":"sh/j65oj2t8","slide":7,"text":"chesstong.com  ·  GitHub / project documentation","textPreview":"chesstong.com  ·  GitHub / project documentation","textChars":48,"textLines":1,"bbox":[64,628,760,28]}
+{"kind":"textbox","id":"sh/y5wnaxcn","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1190,674,36,20]}
+{"kind":"notes","id":"nt/3u2nbw","slide":7,"text":"01:46–02:00｜目前平台已经包含三百多道题、三个 AI 学习角色、四级回退和八个 Flutter 核心页面。它的优势是反馈清楚、数据可追踪、引擎与模型协作，而且 AI 不可用时仍能继续服务。下一步，我会收集真实用户反馈，评估解释质量，并扩展到更多课堂场景。\n\n[Sources]\n- 项目仓库 README.md、LLM_ENGINEERING_NOTES.md、源代码与本地页面。"}
