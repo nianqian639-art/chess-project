@@ -1,4 +1,4 @@
-// 棋伴 App — Complete Application Logic
+// 棋童 App — Complete Application Logic
 let currentView = "dashboard", ws = null, pvpRoomId = "", pvpFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", pvpSelected = "", pvpMyColor = "";
 let problems = [], currentProblem = null, hintIdx = 0, practiceSelected = "", lastPracticeAnswer = "";
 let matchId = "", battleFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", battleSelected = "", moves = [];
@@ -7,12 +7,8 @@ let dailyMissions = [];
 let rankTab = "global", currentSection = null, bindTimer = null;
 let editorFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", selectedPiece = "K", currentClassId = "";
 const BATTLE_LEVELS = [
-  { tier: 1, label: "1档 启蒙", difficulty: 1, hint: "AI 会明显放慢节奏，适合刚学走法和吃子的孩子。" },
-  { tier: 2, label: "2档 入门", difficulty: 2, hint: "AI 会偶尔送子，也常常只顾自己走，适合第一次完整下棋。" },
-  { tier: 3, label: "3档 练习", difficulty: 4, hint: "会开始看吃子和将军，但还是会漏掉很多机会。" },
-  { tier: 4, label: "4档 挑战", difficulty: 7, hint: "会做基础攻击和防守，适合已经会基本战术的小朋友。" },
-  { tier: 5, label: "5档 进阶", difficulty: 11, hint: "会更认真地保护棋子，也会主动找连续威胁。" },
-  { tier: 6, label: "6档 小冠军", difficulty: 16, hint: "已经接近认真训练强度，适合长期练习后的挑战。" },
+  { tier: 1, difficulty: 1 }, { tier: 2, difficulty: 2 }, { tier: 3, difficulty: 4 },
+  { tier: 4, difficulty: 7 }, { tier: 5, difficulty: 11 }, { tier: 6, difficulty: 16 },
 ];
 const PIECES_FULL = { K:"♔",Q:"♕",R:"♖",B:"♗",N:"♘",P:"♙",k:"♚",q:"♛",r:"♜",b:"♝",n:"♞",p:"♟",".":"·" };
 const VOICE_PRESETS = {
@@ -20,9 +16,12 @@ const VOICE_PRESETS = {
   child: { labelKey: "childPlayer", rate: 0.95, pitch: 1.18, hintKey: "childHint" },
   buddy: { labelKey: "energyBuddy", rate: 1.03, pitch: 1.16, hintKey: "buddyHint" },
   coach: { labelKey: "patientCoach", rate: 0.88, pitch: 0.92, hintKey: "coachHint" },
+  monkey: { labelKey: "monkeyKing", rate: 1.03, pitch: 1.16, hintKey: "monkeyHint" },
 };
 let speechVoices = [];
 let audioCtx = null;
+let currentTtsAudio = null;
+let speakSession = 0;
 
 // ── Init ──
 if (!API.autoLogin()) { location.href = "/"; }
@@ -102,6 +101,20 @@ function missionIcon(type) {
   return "⭐";
 }
 
+function missionText(mission) {
+  const count = mission.condition.threshold;
+  if (mission.condition.type === "login") {
+    return { name: t("missionLoginName"), description: t("missionLoginDescription") };
+  }
+  if (mission.condition.type === "solve_count") {
+    return { name: t("missionTrainingName"), description: t("missionTrainingDescription", { count }) };
+  }
+  if (mission.condition.type === "battle_count") {
+    return { name: t("missionBattleName"), description: t("missionBattleDescription", { count }) };
+  }
+  return { name: mission.name, description: mission.description };
+}
+
 function renderDailyMissions(date) {
   const card = document.getElementById("dailyMissionCard");
   if (!card) return;
@@ -110,33 +123,34 @@ function renderDailyMissions(date) {
     <div class="mission-card">
       <div class="mission-head">
         <div>
-          <h3>✅ 每日任务</h3>
-          <p>${date} 自动更新。做完一项就会打勾，还能领积分。</p>
+          <h3>✅ ${t("dailyMissions")}</h3>
+          <p>${t("dailyMissionsUpdated", { date })}</p>
         </div>
-        <button class="btn btn-ghost" onclick="loadDailyMissions()">刷新</button>
+        <button class="btn btn-ghost" onclick="loadDailyMissions()">${t("refresh")}</button>
       </div>
       <div class="mission-list">
         ${dailyMissions.map(function(mission) {
           const done = mission.completed || mission.claimed;
+          const text = missionText(mission);
           const action = mission.claimed
             ? `<span class="mission-check">✓</span>`
             : mission.completed
-              ? `<button class="btn btn-primary" onclick="claimMission('${mission.id}')">领 ${mission.pointsReward} 分</button>`
+              ? `<button class="btn btn-primary" onclick="claimMission('${mission.id}')">${t("missionClaim", { points: mission.pointsReward })}</button>`
               : `<span class="mission-chip">${mission.progress}/${mission.condition.threshold}</span>`;
           return `
             <div class="mission-item ${done ? "done" : ""}">
               <div class="mission-badge">${missionIcon(mission.condition.type)}</div>
               <div class="mission-main">
-                <h4>${esc(mission.name)}</h4>
-                <p>${esc(mission.description)}</p>
+                <h4>${esc(text.name)}</h4>
+                <p>${esc(text.description)}</p>
                 <div class="mission-meta">
-                  <span class="mission-chip">奖励 ${mission.pointsReward} 分</span>
-                  <span class="mission-chip">${mission.completed ? "已完成" : "进行中"}</span>
+                  <span class="mission-chip">${t("missionReward", { points: mission.pointsReward })}</span>
+                  <span class="mission-chip">${mission.completed ? t("missionCompleted") : t("missionInProgress")}</span>
                 </div>
               </div>
               <div>${action}</div>
             </div>`;
-        }).join("") || `<div class="feed">今天还没有任务，稍后再来看看。</div>`}
+        }).join("") || `<div class="feed">${t("dailyMissionsEmpty")}</div>`}
       </div>
     </div>`;
 }
@@ -146,7 +160,7 @@ async function loadDailyMissions() {
   const card = document.getElementById("dailyMissionCard");
   if (card) {
     card.style.display = "";
-    card.innerHTML = `<div class="mission-card"><div class="feed">⏳ 正在加载今天的任务...</div></div>`;
+    card.innerHTML = `<div class="mission-card"><div class="feed">${t("dailyMissionsLoading")}</div></div>`;
   }
   try {
     const data = await API.req("/missions/today");
@@ -155,7 +169,7 @@ async function loadDailyMissions() {
   } catch (e) {
     if (card) {
       card.style.display = "";
-      card.innerHTML = `<div class="mission-card"><div class="feed">加载任务失败：${esc(e.message)}</div></div>`;
+      card.innerHTML = `<div class="mission-card"><div class="feed">${t("dailyMissionsLoadFailed", { message: esc(e.message) })}</div></div>`;
     }
   }
 }
@@ -229,8 +243,9 @@ function loadSpeechVoices(preferred) {
   speechVoices = speechSynthesis.getVoices();
   const select = document.getElementById("voiceSelect");
   if (!select) return;
-  const chinese = speechVoices.filter(v => /^zh|Chinese|普通话|国语|中文/i.test(`${v.lang} ${v.name}`));
-  const list = chinese.length ? chinese : speechVoices;
+  const locale = { zh: "zh", en: "en", ja: "ja", fr: "fr", es: "es" }[getLang()] || "zh";
+  const matching = speechVoices.filter(v => v.lang.toLowerCase().startsWith(locale));
+  const list = matching.length ? matching : speechVoices;
   select.innerHTML = `<option value="">${t("autoVoice")}</option>` + list.map(v => `<option value="${esc(v.name)}">${esc(v.name)} · ${esc(v.lang)}</option>`).join("");
   if (preferred) select.value = preferred;
   saveVoiceSettings();
@@ -280,33 +295,90 @@ function cleanSpeechText(text) {
   div.innerHTML = String(text || "");
   return (div.textContent || div.innerText || "")
     .replace(/[♔♕♖♗♘♙♚♛♜♝♞♟]/g, "")
+    .replace(/[*#`_>~|·•●◦▪▫]/g, "")
+    .replace(/^[-–—]\s+|\s[-–—]\s/gm, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
+// 把长文本按句子切成小段，避免单次 TTS 合成超过超时时间（长文本会超时回退系统音）。
+function splitSpeech(text, maxLen = 150) {
+  const sentences = text.match(/[^。！？；!?;.]+[。！？；!?;.]?/g) || [text];
+  const chunks = [];
+  let cur = "";
+  for (const s of sentences) {
+    if (cur && (cur + s).length > maxLen) { chunks.push(cur); cur = s; }
+    else cur += s;
+  }
+  if (cur) chunks.push(cur);
+  return chunks.length ? chunks : [text];
+}
+
 function speakText(text) {
+  const content = cleanSpeechText(text);
+  if (!content) { toast(t("noSpeechContent")); return; }
+  stopSpeech();
+  playUiSound("speak");
+  saveVoiceSettings();
+  const settings = JSON.parse(localStorage.getItem("ct_voice_settings") || "{}");
+  // 中文用声音设计的动物角色，英文用现成多语角色，其他语言用浏览器对应语言音色。
+  const lang = getLang();
+  const session = speakSession;
+  if (lang === "zh" || lang === "en") {
+    speakViaTtsChunked(content, settings.preset || "story", lang, session)
+      .catch((err) => { if (err && err.message === "stopped") return; speakViaBrowser(content, settings); });
+  } else {
+    speakViaBrowser(content, settings);
+  }
+}
+
+// 逐段合成并顺序播放；段与段之间、以及合成等待期间检查是否已被 stop。
+async function speakViaTtsChunked(content, preset, language, session) {
+  const chunks = splitSpeech(content);
+  for (const chunk of chunks) {
+    if (session !== speakSession) throw new Error("stopped");
+    await speakViaTts(chunk, preset, language);
+  }
+}
+
+function speakViaTts(content, preset, language) {
+  return API.req("/tts", "POST", { text: content, preset: preset, language: language })
+    .then(async (data) => {
+      if (!data || !data.url) { throw new Error("no tts url"); }
+      const audio = new Audio(data.url);
+      currentTtsAudio = audio;
+      // 等这段音频播完（或被 stop 暂停）再进入下一段。
+      await new Promise((resolve, reject) => {
+        const clear = () => { if (currentTtsAudio === audio) currentTtsAudio = null; };
+        audio.onended = () => { clear(); resolve(); };
+        audio.onerror = () => { clear(); reject(new Error("tts play failed")); };
+        audio.onpause = () => { clear(); reject(new Error("stopped")); };
+        audio.play().catch(() => { clear(); reject(new Error("tts play failed")); });
+      });
+    });
+}
+
+function speakViaBrowser(content, settings) {
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
     toast(t("speechNotSupported"));
     return;
   }
-  const content = cleanSpeechText(text);
-  if (!content) { toast(t("noSpeechContent")); return; }
-  playUiSound("speak");
-  saveVoiceSettings();
-  const settings = JSON.parse(localStorage.getItem("ct_voice_settings") || "{}");
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(content);
-  utterance.lang = "zh-CN";
+  utterance.lang = ({ zh: "zh-CN", en: "en-US", ja: "ja-JP", fr: "fr-FR", es: "es-ES" })[getLang()] || "zh-CN";
   utterance.rate = Number(settings.rate || 1);
   utterance.pitch = Number(settings.pitch || 1);
   const preferred = settings.voice;
-  const voice = speechVoices.find(v => v.name === preferred) || speechVoices.find(v => /^zh/i.test(v.lang)) || null;
+  const locale = utterance.lang.slice(0, 2);
+  const voice = speechVoices.find(v => v.name === preferred) || speechVoices.find(v => v.lang.toLowerCase().startsWith(locale)) || null;
   if (voice) utterance.voice = voice;
   speechSynthesis.speak(utterance);
 }
 
 function stopSpeech() {
   if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (currentTtsAudio) { currentTtsAudio.pause(); currentTtsAudio = null; }
+  speakSession++; // 使进行中的分段朗读停止
 }
 
 function speakButton(text) {
@@ -408,7 +480,34 @@ function backToLearn() {
 
 // ── Practice ──
 async function loadProblems() {
-  try { const d = await API.req("/problems/list"); problems = d.items||[]; currentProblem=problems[0]||null; document.getElementById("problemMeta").innerHTML=`共 <b>${problems.length}</b> 题`; renderProbList(); renderProblem(); } catch(e) { toast(e.message); }
+  try { const d = await API.req("/problems/list"); problems = (d.items||[]).map(localizeProblemForDisplay); currentProblem=problems[0]||null; document.getElementById("problemMeta").textContent=t("puzzleCount", { count: problems.length }); renderProbList(); renderProblem(); } catch(e) { toast(e.message); }
+}
+function practiceUi(key, vars = {}) {
+  const copy = {
+    zh: { correct:"✅ 答对了！", wrong:"❌ 不对，再试试！", points:"+{points}分", explain:"🤖 AI讲解", loading:"⌛ AI讲解生成中...", failed:"❌ 讲解生成失败：{message}", explanation:"🤖 AI讲解：", fallback:"思路分步：先找关键子力和威胁。\n关键点：留意将军、吃子和对方王的逃跑格。\n常见误区：只看自己的走法，忘记检查对方的应对。\n类似题建议：再练习几道同主题的题目。" },
+    en: { correct:"✅ Correct!", wrong:"❌ Not quite. Try again!", points:"+{points} pts", explain:"🤖 AI explanation", loading:"⌛ Generating AI explanation...", failed:"❌ Failed to generate explanation: {message}", explanation:"🤖 AI explanation:", fallback:"Approach: identify the important pieces and threats first.\nKey idea: look for checks, captures, and the opponent king's escape squares.\nCommon mistake: do not consider only your move; check the opponent's reply.\nNext practice: solve several more puzzles with this theme." },
+    ja: { correct:"✅ 正解です！", wrong:"❌ もう一度試してみましょう！", points:"+{points}点", explain:"🤖 AI解説", loading:"⌛ AI解説を作成中...", failed:"❌ 解説の作成に失敗しました：{message}", explanation:"🤖 AI解説：", fallback:"考え方：まず重要な駒と脅威を見つけましょう。\nポイント：チェック、駒取り、相手の王の逃げ道を確認します。\nよくあるミス：自分の手だけでなく、相手の応手も確認しましょう。\n次の練習：同じテーマの問題をさらに解いてみましょう。" },
+    fr: { correct:"✅ Correct !", wrong:"❌ Pas encore. Réessayez !", points:"+{points} pts", explain:"🤖 Explication IA", loading:"⌛ Génération de l'explication IA...", failed:"❌ Échec de génération : {message}", explanation:"🤖 Explication IA :", fallback:"Méthode : repérez d'abord les pièces et menaces importantes.\nIdée clé : cherchez les échecs, prises et cases de fuite du roi adverse.\nErreur fréquente : vérifiez aussi la réponse adverse.\nEntraînement : faites plusieurs exercices du même thème." },
+    es: { correct:"✅ ¡Correcto!", wrong:"❌ Aún no. ¡Inténtalo de nuevo!", points:"+{points} pts", explain:"🤖 Explicación IA", loading:"⌛ Generando explicación de IA...", failed:"❌ No se pudo generar la explicación: {message}", explanation:"🤖 Explicación IA:", fallback:"Método: identifica primero las piezas y amenazas importantes.\nIdea clave: busca jaques, capturas y casillas de escape del rey rival.\nError común: comprueba también la respuesta del rival.\nPráctica: resuelve varios ejercicios más del mismo tema." }
+  };
+  let value = (copy[getLang()] || copy.en)[key] || copy.en[key] || key;
+  Object.entries(vars).forEach(([name, valueToInsert]) => { value = value.replaceAll(`{${name}}`, String(valueToInsert)); });
+  return value;
+}
+function localizeProblemForDisplay(problem) {
+  if (getLang() === "zh") return problem;
+  const copy = {
+    en: { question:"Find the best move in this position.", hint:"Look for checks, captures, and threats.", points:{"后排将杀":"Back-rank mate","皇后后排将杀":"Queen back-rank mate","升变":"Promotion","骑士双攻":"Knight fork"} },
+    ja: { question:"この局面で最善手を見つけましょう。", hint:"チェック、駒取り、脅威を探しましょう。", points:{"后排将杀":"バックランクメイト","皇后后排将杀":"クイーンによるバックランクメイト","升变":"昇格","骑士双攻":"ナイトフォーク"} },
+    fr: { question:"Trouvez le meilleur coup dans cette position.", hint:"Cherchez les échecs, les prises et les menaces.", points:{"后排将杀":"Mat de la dernière rangée","皇后后排将杀":"Mat de la dernière rangée avec la dame","升变":"Promotion","骑士双攻":"Fourchette de cavalier"} },
+    es: { question:"Encuentra la mejor jugada en esta posición.", hint:"Busca jaques, capturas y amenazas.", points:{"后排将杀":"Mate de la última fila","皇后后排将杀":"Mate de la última fila con dama","升变":"Promoción","骑士双攻":"Doble ataque de caballo"} }
+  }[getLang()];
+  return { ...problem, question: copy.question, knowledgePoint: copy.points[problem.knowledgePoint] || copy.question, hints: (problem.hints || []).map(() => copy.hint) };
+}
+function explanationMatchesCurrentLanguage(text) {
+  if (getLang() === "zh") return true;
+  if (getLang() === "ja") return /[\u3040-\u30ff]/.test(text);
+  return !/[\u3400-\u9fff]/.test(text);
 }
 function renderProbList() {
   document.getElementById("problemList").innerHTML = problems.map((p,i) => `<div class="list-item" style="cursor:pointer;${currentProblem&&currentProblem.id===p.id?'background:rgba(255,255,255,.1);':''}" onclick="selectProblem(${i})">${String(i+1).padStart(2,"0")}·${p.knowledgePoint}·★${p.difficulty}</div>`).join("");
@@ -439,8 +538,8 @@ async function submitPracticeMove(moveStr) {
   lastPracticeAnswer = moveStr;
   try {
     const d = await API.req("/problems/submit","POST",{problemId:currentProblem.id,answer:moveStr});
-var hdr = d.isCorrect ? "✅ 答对了！"+(d.awardedPoints>0?" +"+d.awardedPoints+"分":"") : "❌ 不对，再试试！";
-    document.getElementById("practiceResult").innerHTML = hdr + ' <button class="btn btn-ghost" onclick="explainAnswer()" style="font-size:11px;padding:2px 8px;">🤖 AI讲解</button>';
+var hdr = d.isCorrect ? practiceUi("correct")+(d.awardedPoints>0?" "+practiceUi("points", { points:d.awardedPoints }):"") : practiceUi("wrong");
+    document.getElementById("practiceResult").innerHTML = hdr + ' <button class="btn btn-ghost" onclick="explainAnswer()" style="font-size:11px;padding:2px 8px;">'+practiceUi("explain")+'</button>';
     playUiSound(d.isCorrect ? "correct" : "wrong");
     if(d.awardedPoints>0){
       const oldRank = getRank(API.user.points || 0);
@@ -464,12 +563,12 @@ async function submitPractice() {
 
 async function explainAnswer() {
   if(!currentProblem){ toast("没有题目"); return; }
-  document.getElementById("practiceResult").innerHTML += "<br>⏳ AI讲解生成中...";
+  document.getElementById("practiceResult").innerHTML += "<br>"+practiceUi("loading");
   try {
-    const e = await API.req("/problems/explain","POST",{problemId:currentProblem.id,answer:lastPracticeAnswer||currentProblem.solution,isCorrect:true});
-    const text = e.explanation || "";
-    document.getElementById("practiceResult").innerHTML = document.getElementById("practiceResult").innerHTML.replace("⏳ AI讲解生成中...","") + "<br><br><b>🤖 AI讲解:</b>" + speakButton(text) + "<br>" + esc(text);
-  } catch(ex){ document.getElementById("practiceResult").innerHTML += "<br>❌ 讲解生成失败：" + esc(ex.message); }
+    const e = await API.req("/problems/explain","POST",{problemId:currentProblem.id,answer:lastPracticeAnswer||currentProblem.solution,isCorrect:true,language:getLang()});
+    const text = explanationMatchesCurrentLanguage(e.explanation || "") ? (e.explanation || "") : practiceUi("fallback");
+    document.getElementById("practiceResult").innerHTML = document.getElementById("practiceResult").innerHTML.replace(practiceUi("loading"),"") + "<br><br><b>"+practiceUi("explanation")+"</b>" + speakButton(text) + "<br>" + esc(text);
+  } catch(ex){ document.getElementById("practiceResult").innerHTML += "<br>"+practiceUi("failed", { message:esc(ex.message) }); }
 }
 
 // ── AI Battle ──
@@ -479,13 +578,14 @@ function initBattleDifficulty() {
   var mode = document.getElementById("battleMode");
   if (!sel) return;
   sel.innerHTML = BATTLE_LEVELS.map(function(level) {
-    return '<option value="' + level.tier + '">' + level.label + '</option>';
+    return '<option value="' + level.tier + '">' + battleLevelLabel(level) + '</option>';
   }).join("");
   sel.value = "2";
   sel.addEventListener("change", updateBattleDifficultyHint);
   if (mode) mode.addEventListener("change", updateBattleDifficultyHint);
   updateBattleDifficultyHint();
 }
+function battleLevelLabel(level) { return t("battleTier", { tier: level.tier }); }
 function getBattleDifficultyLevel() {
   var sel = document.getElementById("battleDiff");
   var tier = Number(sel ? sel.value : 2);
@@ -497,16 +597,28 @@ function getBattleDifficultyValue() {
 function updateBattleDifficultyHint() {
   var level = getBattleDifficultyLevel();
   var mode = document.getElementById("battleMode");
-  var modeLabel = mode && mode.value === "teaching" ? "当前是简单陪练模式" : "当前是标准对战模式";
-  document.getElementById("battleDifficultyHint").innerHTML = "<b>" + level.label + "</b>：" + level.hint + "<br><small>" + modeLabel + "。</small>";
+  var modeLabel = mode && mode.value === "teaching" ? t("modeTeachingActive") : t("modeStandardActive");
+  document.getElementById("battleDifficultyHint").innerHTML = "<b>" + esc(battleLevelLabel(level)) + "</b>：" + esc(t("battleTierHint")) + "<br><small>" + esc(modeLabel) + "</small>";
 }
 async function loadVariants() {
-  try { var d = await API.req("/match/variants"); variants = d.items||[]; var sel=document.getElementById("battleVariant"); if(!sel)return; sel.innerHTML=variants.map(function(v){ return '<option value="'+v.key+'">'+v.title+'</option>'; }).join(""); sel.value=battleVariant; updateVariantDesc(); } catch(e) {}
+  try { var d = await API.req("/match/variants"); variants = d.items||[]; var sel=document.getElementById("battleVariant"); if(!sel)return; sel.innerHTML=variants.map(function(v){ return '<option value="'+v.key+'">'+esc(battleVariantLabel(v.key, v.title))+'</option>'; }).join(""); sel.value=battleVariant; updateVariantDesc(); } catch(e) {}
 }
 function updateVariantDesc() {
   var sel=document.getElementById("battleVariant"); if(!sel)return;
   battleVariant=sel.value; var v=variants.find(function(x){return x.key===battleVariant;});
-  document.getElementById("variantDesc").innerHTML=v?"<b>"+v.title+"</b>："+v.desc:"";
+  document.getElementById("variantDesc").innerHTML=v?"<b>"+esc(battleVariantLabel(v.key, v.title))+"</b>："+esc(battleVariantDescription(v.key, v.desc)):"";
+}
+function battleVariantLabel(key, fallback) {
+  const names = { standard:["Standard battle","標準対局","Partie standard","Partida estándar"], pawns:["Pawn battle","ポーン対局","Bataille de pions","Batalla de peones"], knights:["Knight battle","ナイト対局","Bataille de cavaliers","Batalla de caballos"], bishops:["Bishop battle","ビショップ対局","Bataille de fous","Batalla de alfiles"], rooks:["Rook battle","ルーク対局","Bataille de tours","Batalla de torres"], queen:["Queen battle","クイーン対局","Bataille de dames","Batalla de damas"], full:["Full battle","総合対局","Partie complète","Partida completa"] };
+  if (getLang() === "zh") return fallback;
+  const idx = { en:0, ja:1, fr:2, es:3 }[getLang()] ?? 0;
+  return names[key]?.[idx] || names.standard[idx];
+}
+function battleVariantDescription(key, fallback) {
+  const descriptions = { standard:["A complete board with all standard pieces.","すべての駒を使う通常のチェス対局です。","Un échiquier complet avec toutes les pièces standard.","Un tablero completo con todas las piezas estándar."], pawns:["Play with kings and pawns only.","キングとポーンだけで対局します。","Jouez uniquement avec les rois et les pions.","Juega solo con reyes y peones."], knights:["Practice knight jumps and forks.","ナイトの跳躍とフォークを練習します。","Entraînez les sauts et fourchettes de cavalier.","Practica saltos y ataques dobles de caballo."], bishops:["Practice bishop diagonal attacks.","ビショップの斜めの攻撃を練習します。","Entraînez les attaques diagonales des fous.","Practica ataques diagonales de alfil."], rooks:["Practice rook control on ranks and files.","ルークの縦横の支配を練習します。","Entraînez le contrôle des lignes avec les tours.","Practica el control de filas y columnas con torres."], queen:["Practice queen coordination.","クイーンとの連携を練習します。","Entraînez la coordination de la dame.","Practica la coordinación de la dama."], full:["A complete game to test all your skills.","総合力を試す通常の対局です。","Une partie complète pour tester votre niveau.","Una partida completa para probar tu nivel."] };
+  if (getLang() === "zh") return fallback;
+  const idx = { en:0, ja:1, fr:2, es:3 }[getLang()] ?? 0;
+  return descriptions[key]?.[idx] || descriptions.standard[idx];
 }
 async function startMatch() {
   try {
@@ -520,9 +632,9 @@ async function startMatch() {
     lastBattleEngineMove = null;
     battleSelected = "";
     battleFrom = "";
-    document.getElementById("battleStatus").innerHTML = "对局开始啦。你先走白棋，当前难度是 <b>" + level.label + "</b>。";
-    document.getElementById("moveHistory").textContent = "这里会按顺序记录你和 AI 的每一步。";
-    document.getElementById("analysisResult").textContent = "对局开始后，你可以点击“建议”看 AI 小教练提示，或者点击“复盘”看整盘总结。";
+    document.getElementById("battleStatus").innerHTML = esc(t("battleStarted", { level: battleLevelLabel(level) })).replace(esc(battleLevelLabel(level)), "<b>" + esc(battleLevelLabel(level)) + "</b>");
+    document.getElementById("moveHistory").textContent = t("moveHistoryEmpty");
+    document.getElementById("analysisResult").textContent = t("battleGuide");
     renderBattle();
   } catch(e){ toast(e.message); }
 }
@@ -553,16 +665,16 @@ async function submitBattleMoveStr(moveStr) {
       payload.pgn = pgn.trim();
     }
     var d = await API.req("/match/move","POST",payload);
-    if (!d.playerMoveAccepted) { toast("非法走子"); renderBattle(); return; }
+    if (!d.playerMoveAccepted) { toast(t("invalidMove")); renderBattle(); return; }
     battleFen = d.fenAfter || battleFen;
     moves.push(d.playerMove || moveStr); if (d.engineMove) moves.push(d.engineMove);
     lastBattleEngineMove = d.engineMove || null;
     document.getElementById("battleMoveInput").value = "";
-    document.getElementById("battleStatus").innerHTML = "你刚才走了 <b>" + (d.playerMove||moveStr) + "</b>。<br>AI 回应 <b>" + (d.engineMove||"无") + "</b>。" + (d.gameOver ? "<br><b>对局结束！+20分</b>" : "<br>继续观察棋盘，看看下一步有没有更好的吃子或将军机会。");
+    document.getElementById("battleStatus").innerHTML = esc(t("battleMoveStatus", { player: d.playerMove || moveStr, engine: d.engineMove || t("noMove") })).replace("\n", "<br>") + (d.gameOver ? "<br><b>" + esc(t("battleFinished")) + "</b>" : "<br>" + esc(t("battleContinue")));
     document.getElementById("moveHistory").innerHTML = moves.length ? moves.map(function(move, index) {
       var prefix = index % 2 === 0 ? (Math.floor(index / 2) + 1) + ". " : "";
       return prefix + move;
-    }).join("  ") : "这里会按顺序记录你和 AI 的每一步。";
+    }).join("  ") : t("moveHistoryEmpty");
     if (d.gameOver) {
       const oldRank = getRank(API.user.points || 0);
       API.user.points += 20;
@@ -576,29 +688,29 @@ async function submitBattleMoveStr(moveStr) {
 }
 async function submitBattleMove() {
   var m = document.getElementById("battleMoveInput").value.trim();
-  if (!m) { toast("输入走法或点击棋盘走棋"); return; }
+  if (!m) { toast(t("inputMove")); return; }
   submitBattleMoveStr(m);
 }
 async function suggestMove() {
   try {
     const level = getBattleDifficultyLevel();
     const d = await API.req("/match/suggest","POST",{fen:battleFen,difficulty:level.difficulty});
-    const text = `建议 ${d.move||"无"}。${d.reason||""}`;
+    const text = `${t("aiSuggestion")} ${d.move||t("noMove")}. ${d.reason||""}`;
     document.getElementById("analysisResult").innerHTML =
-      `🤖 AI 小教练建议：<b>${d.move||"无"}</b>${speakButton(text)}<br>` +
-      `当前训练档位：${level.label}<br>` +
-      `引擎来源：${esc(d.source||"fallback")}<br>` +
-      `${esc(d.reason||"先看看能不能吃子、将军，或者把棋子走到更安全的位置。")}`;
+      `${t("aiSuggestion")}：<b>${esc(d.move||t("noMove"))}</b>${speakButton(text)}<br>` +
+      `${t("trainingTier")}：${esc(battleLevelLabel(level))}<br>` +
+      `${t("engineSource")}：${esc(d.source||"fallback")}<br>` +
+      `${esc(d.reason||t("generalSuggestion"))}`;
   } catch(e){ toast(e.message); }
 }
 async function analyzeGame() {
   try {
-    const d = await API.req("/match/analyze","POST",{pgn:moves.join(" ")||"无走子"});
-    const key = (d.keyMoves||[]).map(m=>"第"+m.ply+"手 "+m.san).join("，") || "暂时还没有关键着法";
-    const text = `复盘：${d.summary||""}。关键：${key}`;
+    const d = await API.req("/match/analyze","POST",{pgn:moves.join(" ")||""});
+    const key = (d.keyMoves||[]).map(m=>t("moveNumber", { number: m.ply, move: m.san })).join(", ") || t("noKeyMoves");
+    const text = `${t("reviewTitle")}: ${d.summary||""}. ${t("keyMoves")}: ${key}`;
     document.getElementById("analysisResult").innerHTML =
-      `📋 对局复盘：${esc(d.summary||"这一盘还没有足够走子，先多下一会儿再来复盘。")}${speakButton(text)}<br>` +
-      `关键着法：${esc(key)}`;
+      `${t("reviewTitle")}：${esc(d.summary||t("noGameData"))}${speakButton(text)}<br>` +
+      `${t("keyMoves")}：${esc(key)}`;
   } catch(e){ toast(e.message); }
 }
 
@@ -969,6 +1081,15 @@ function refreshI18n() {
   updateRankDisplay();
   initDash();
   initVoiceSettings();
+  // These views cache API data. Fetch it again so titles, hints, and variant copy
+  // use the newly selected language instead of the previous response.
+  if (currentView === "practice" && problems.length) {
+    // A previous result or AI explanation belongs to the old language and must not
+    // remain visible after switching. The learner can submit again for a new one.
+    document.getElementById("practiceResult").innerHTML = "";
+    loadProblems();
+  }
+  if (currentView === "battle") { initBattleDifficulty(); loadVariants(); }
   if (currentView === "rankings") renderRankRules();
 }
 connectWs();

@@ -18,6 +18,7 @@ import { problemRoutes } from "./routes/problems.js";
 import { parentRoutes } from "./routes/parent.js";
 import { rankingRoutes } from "./routes/rankings.js";
 import { roomRoutes } from "./routes/room.js";
+import { ttsRoutes } from "./routes/tts.js";
 import { registerWebSocket } from "./services/websocket.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -33,7 +34,7 @@ export const buildServer = () => {
 
   app.register(cors, {
     origin: process.env.NODE_ENV === "production"
-      ? [/^https?:\/\/(.*\.)?chesstong\.com$/, /^https?:\/\/localhost(:\d+)?$/]
+      ? [/^https?:\/\/(.*\.)?chesstong\.top$/, /^https?:\/\/localhost(:\d+)?$/]
       : true,
   });
   app.register(sensible);
@@ -68,6 +69,7 @@ export const buildServer = () => {
   app.register(friendsRoutes);
   app.register(chatRoutes);
   app.register(gameRequestRoutes);
+  app.register(ttsRoutes);
 
   // WebSocket handler
   registerWebSocket(app);

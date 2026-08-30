@@ -1,0 +1,396 @@
+<title>qitongct</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F5EDDB;
+    --bg-alt: #FBF6EA;
+    --card: #FFFFFF;
+    --felt: #1E4A3E;
+    --felt-deep: #14332B;
+    --felt-soft: #2A5A4A;
+    --ink: #1E2B27;
+    --muted: #6F6A5B;
+    --gold: #C08A2D;
+    --amber: #D9A441;
+    --coral: #C75A3F;
+    --line: #E4D8BC;
+    --onfelt: #F5EDDB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15211E; --bg-alt: #1B2A25; --card: #1B2A25;
+      --felt: #2A5A4A; --felt-deep: #1E4A3E; --felt-soft: #356B59;
+      --ink: #F0E9D8; --muted: #A9A492; --gold: #D4A94E; --amber: #E0B355;
+      --coral: #D97A5F; --line: #2C3A33; --onfelt: #F5EDDB;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15211E; --bg-alt: #1B2A25; --card: #1B2A25;
+    --felt: #2A5A4A; --felt-deep: #1E4A3E; --felt-soft: #356B59;
+    --ink: #F0E9D8; --muted: #A9A492; --gold: #D4A94E; --amber: #E0B355;
+    --coral: #D97A5F; --line: #2C3A33; --onfelt: #F5EDDB;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Manrope", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .deck { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; display: flex; flex-direction: column; gap: 36px; }
+
+  .slide {
+    position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 18px 50px -28px rgba(20, 40, 33, 0.55); display: flex; flex-direction: column;
+  }
+  .slide--light { background: var(--bg-alt); color: var(--ink); }
+  .slide--felt { background: linear-gradient(135deg, var(--felt-deep), var(--felt)); color: var(--onfelt); }
+
+  .slide-inner { flex: 1; padding: 44px 60px 20px; display: flex; flex-direction: column; min-width: 0; }
+
+  .eyebrow { font-family: "Fraunces", "Manrope", sans-serif; font-weight: 600; font-size: 12.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+  .slide--felt .eyebrow { color: var(--amber); }
+
+  .title { margin: 10px 0 0; font-family: "Fraunces", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-weight: 600; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.16; letter-spacing: -0.01em; text-wrap: balance; }
+  .slide--light .title { color: var(--felt); }
+  .slide--felt .title { color: var(--onfelt); }
+
+  .subtitle { margin: 14px 0 0; font-size: 16.5px; line-height: 1.55; color: var(--muted); max-width: 62ch; }
+  .slide--felt .subtitle { color: rgba(245, 237, 219, 0.82); }
+
+  .content { margin-top: 24px; flex: 1; min-height: 0; }
+  .row { display: flex; gap: 20px; height: 100%; align-items: stretch; }
+  .row > * { flex: 1; min-width: 0; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .card h3 { margin: 0; font-size: 19px; font-weight: 700; color: var(--felt); }
+  .card p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+  .card .kicker { font-family: "Fraunces", serif; font-size: 15px; font-weight: 600; color: var(--gold); }
+  .card--gold { border-top: 3px solid var(--gold); }
+
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 13px; font-weight: 600; background: rgba(192,138,45,0.14); color: var(--gold); }
+  .slide--felt .chip { background: rgba(217,164,65,0.18); color: var(--amber); }
+
+  .foot { display: flex; align-items: center; justify-content: space-between; padding: 0 60px 20px; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .slide--felt .foot { color: rgba(245,237,219,0.6); }
+
+  .hero { flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: center; min-height: 0; }
+  .hero .title { font-size: clamp(34px, 4.2vw, 54px); line-height: 1.08; }
+  .board { justify-self: center; width: min(100%, 300px); aspect-ratio: 1; border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: repeat(8,1fr); grid-template-rows: repeat(8,1fr); box-shadow: 0 22px 48px -20px rgba(0,0,0,0.45); }
+  .board span { display: flex; align-items: center; justify-content: center; font-size: 26px; }
+  .board .l { background: #F0D79A; color: #3A2B1B; }
+  .board .d { background: #7A4B2D; color: #F7E9D0; }
+
+  /* scenario */
+  .scene { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; height: 100%; align-items: stretch; }
+  .scene-quote { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px 34px; display: flex; flex-direction: column; justify-content: center; }
+  .scene-quote .big { font-family: "Fraunces", "PingFang SC", "Microsoft YaHei", serif; font-size: 30px; line-height: 1.4; color: var(--felt); font-weight: 600; }
+  .scene-quote .big .word { color: var(--coral); }
+
+  /* flow */
+  .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; height: 100%; align-items: stretch; }
+  .fstep { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
+  .fstep .n { font-family: "Fraunces", serif; font-size: 15px; font-weight: 700; color: var(--gold); width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; }
+  .fstep .t { font-size: 15.5px; font-weight: 700; color: var(--felt); margin-top: 10px; }
+  .fstep .d { font-size: 11.5px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
+  .fstep:not(:last-child)::after { content: "›"; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 20px; }
+
+  .chars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; height: 100%; }
+  .char { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 12px 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; }
+  .char .emoji { font-size: 34px; line-height: 1; }
+  .char .nm { margin-top: 8px; font-size: 15px; font-weight: 700; color: var(--felt); }
+  .char .desc { font-size: 12px; line-height: 1.45; color: var(--muted); }
+  .langstrip { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .langstrip .lbl { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+  /* fallback (engineering) */
+  .fallback { display: grid; grid-template-columns: 1fr 1.25fr; gap: 24px; height: 100%; }
+  .fchain { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .fchain .fnode { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 14px; font-weight: 600; color: var(--felt); }
+  .fchain .fnode.hot { border-color: var(--coral); color: var(--coral); }
+  .fchain .farr { color: var(--gold); font-weight: 700; }
+
+  /* before / after */
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 100%; }
+  .ba-col { display: flex; flex-direction: column; gap: 14px; }
+  .ba-item { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .ba-item .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ba-item .b, .ba-item .a { border-radius: 9px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; }
+  .ba-item .b { background: rgba(199,90,63,0.10); color: var(--coral); }
+  .ba-item .a { background: rgba(30,74,62,0.10); color: var(--felt); font-weight: 600; }
+  .ba-item .b::before { content: "改之前 · "; font-weight: 700; }
+  .ba-item .a::before { content: "改之后 · "; font-weight: 700; }
+
+  .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px; }
+  .stat .s { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 16px; }
+  .stat .s .big { font-family: "Fraunces", serif; font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .stat .s .small { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .impact { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .impact .it { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  .impact .it .ico { font-size: 20px; line-height: 1.3; }
+  .impact .it .tx { font-size: 14px; color: var(--ink); line-height: 1.45; }
+  .impact .it .tx b { color: var(--felt); }
+
+  .teammates { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; height: 100%; }
+  .tm { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .tm h3 { margin: 0; font-size: 17px; font-weight: 700; color: var(--felt); }
+  .tm p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+
+  @media (max-width: 860px) {
+    .slide-inner { padding: 28px 26px 16px; }
+    .foot { padding: 0 26px 14px; }
+    .hero, .scene, .fallback, .ba { grid-template-columns: 1fr; }
+    .board { width: min(60%, 220px); }
+    .chars { grid-template-columns: repeat(2, 1fr); }
+    .flow { grid-template-columns: repeat(2, 1fr); }
+    .flow .fstep::after { display: none; }
+    .row { flex-direction: column; }
+    .stat, .impact, .teammates { grid-template-columns: 1fr; }
+    .ba-item .pair { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    .deck { max-width: none; padding: 0; gap: 0; }
+    .slide { border-radius: 0; box-shadow: none; page-break-after: always; break-inside: avoid; }
+  }
+</style>
+
+<main class="deck">
+
+  <!-- 01 封面 -->
+  <section class="slide slide--felt">
+    <div class="slide-inner">
+      <div class="eyebrow">qitongct</div>
+      <div class="hero">
+        <div>
+          <h1 class="title">让国际象棋，<br>更容易听懂，<br>也更容易坚持。</h1>
+          <p class="subtitle" style="margin-top:20px;max-width:46ch;">面向 4–10 岁初学者的智能学习平台：AI 用孩子听得懂的话讲棋，动画角色再把它读出来。</p>
+          <div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="chip">♞ 300+ 分级战术题</span>
+            <span class="chip">🐻 动画角色语音讲解</span>
+            <span class="chip">♛ Stockfish × LLM 双引擎</span>
+          </div>
+        </div>
+        <div class="board" aria-hidden="true">
+          <span class="l"></span><span class="d">♞</span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span>
+          <span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span>
+          <span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span>
+          <span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span>
+          <span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span>
+          <span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span>
+          <span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d">♔</span>
+          <span class="d">♜</span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span><span class="d"></span><span class="l"></span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>从渝中到重庆，帮助更多孩子爱上国际象棋</span><span>01 / 10</span></div>
+  </section>
+
+  <!-- 02 场景开场 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">开场 · 一个具体的场景</div>
+      <div class="content scene">
+        <div class="scene-quote">
+          <div class="big">一个 6 岁的孩子，<br>第一次看到<span class="word">「牵制」</span>两个字。</div>
+          <p class="subtitle" style="margin-top:18px;">他背下来了，做题还是错。不是不努力，是真的没听懂——也没人用他听得懂的话解释给他听。</p>
+        </div>
+        <div class="scene-quote" style="background:transparent;border:none;justify-content:center;">
+          <div class="big" style="font-size:24px;">我 6 岁开始学棋，也这样卡过。</div>
+          <p class="subtitle" style="margin-top:14px;">所以我想做一个平台，让每个孩子都能「听得懂」，也让每一点进步都「被看见」。</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>先讲人，再讲技术</span><span>02 / 10</span></div>
+  </section>
+
+  <!-- 03 三个角色 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">谁遇到了问题</div>
+      <h2 class="title">这个问题，其实属于三个角色</h2>
+      <div class="content row">
+        <div class="card card--gold">
+          <span class="kicker">🧒 学生</span>
+          <h3>需要听得懂的即时反馈</h3>
+          <p>「牵制」「闪击」会背，不代表真的理解；做题只给对错，却不说为什么。</p>
+        </div>
+        <div class="card card--gold">
+          <span class="kicker">👨‍👩‍👧 家长</span>
+          <h3>不懂棋，也想看懂孩子的进步</h3>
+          <p>愿意支持、愿意监督，但看不懂棋，就很难判断孩子有没有在往前走。</p>
+        </div>
+        <div class="card card--gold">
+          <span class="kicker">👩‍🏫 老师</span>
+          <h3>课后任务和班级追踪</h3>
+          <p>课堂讲完了，课后练习却很难持续追踪，每个学生的情况也看不全。</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>棋童 · Chesstong</span><span>03 / 10</span></div>
+  </section>
+
+  <!-- 04 核心创新 -->
+  <section class="slide slide--felt">
+    <div class="slide-inner">
+      <div class="eyebrow">核心价值</div>
+      <h2 class="title">用 AI，把专业棋语翻译成孩子的话</h2>
+      <p class="subtitle">不是给定义，而是让孩子真正理解——这正是大语言模型最擅长、也最被需要的地方。</p>
+      <div class="content row" style="gap:20px;">
+        <div class="card" style="background:rgba(255,255,255,0.06);border-color:rgba(245,237,219,0.16);">
+          <span class="kicker" style="color:#E0B355;">传统说法</span>
+          <p style="color:rgba(245,237,219,0.85);font-size:16px;line-height:1.6;">“这是一个牵制，被牵制的子不能随便移动，否则会暴露后方更重要的目标。”</p>
+        </div>
+        <div class="card" style="background:rgba(217,164,65,0.14);border-color:rgba(217,164,65,0.35);">
+          <span class="kicker" style="color:#F0B96B;">AI 面向初学者解释</span>
+          <p style="color:var(--onfelt);font-size:16.5px;line-height:1.6;font-weight:500;">“这个棋子后面保护着更重要的棋子，所以它现在不能乱走，就像被钉在原地一样。”</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>让「背下来」变成「真明白」</span><span>04 / 10</span></div>
+  </section>
+
+  <!-- 05 核心流程 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">一条完整流程</div>
+      <h2 class="title">做一道题，走通完整的学习闭环</h2>
+      <p class="subtitle">与其浏览所有功能，不如把一个最能体现价值的功能讲清楚——就讲「做一道战术题」。</p>
+      <div class="content flow">
+        <div class="fstep"><span class="n">1</span><span class="t">选一道题</span><span class="d">300+ 分级题，从入门开始</span></div>
+        <div class="fstep"><span class="n">2</span><span class="t">走子提交</span><span class="d">直接在棋盘上走一步</span></div>
+        <div class="fstep"><span class="n">3</span><span class="t">判对错</span><span class="d">系统实时判定答案</span></div>
+        <div class="fstep"><span class="n">4</span><span class="t">AI 讲解</span><span class="d">思路 / 关键点 / 误区 / 建议</span></div>
+        <div class="fstep"><span class="n">5</span><span class="t">语音朗读</span><span class="d">动画角色把讲解读出来</span></div>
+        <div class="fstep"><span class="n">6</span><span class="t">错题复盘</span><span class="d">记录错题，周报可追溯</span></div>
+      </div>
+    </div>
+    <div class="foot"><span>一个功能，讲到底</span><span>05 / 10</span></div>
+  </section>
+
+  <!-- 06 语音 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">会说话的棋童</div>
+      <h2 class="title">不只「看得懂」，还要「听得见」</h2>
+      <p class="subtitle">每一段 AI 讲解，都有动画角色用声音读出来，让低龄孩子更容易专注、更好坚持。</p>
+      <div class="content">
+        <div class="chars">
+          <div class="char"><span class="emoji">🐻</span><span class="nm">憨厚熊哥哥</span><span class="desc">温和耐心<br>慢慢讲故事</span></div>
+          <div class="char"><span class="emoji">🐷</span><span class="nm">软萌小猪妹</span><span class="desc">奶声奶气<br>软糯可爱</span></div>
+          <div class="char"><span class="emoji">⚡</span><span class="nm">元气小队长</span><span class="desc">积极有干劲<br>做题后加油</span></div>
+          <div class="char"><span class="emoji">🤖</span><span class="nm">呆萌机器人</span><span class="desc">俏皮带电子感<br>陪练分析</span></div>
+          <div class="char"><span class="emoji">🐵</span><span class="nm">猴哥</span><span class="desc">经典戏剧腔<br>活泼有精神</span></div>
+        </div>
+        <div class="langstrip">
+          <span class="lbl">语言自适应：</span>
+          <span class="chip">中文 · 动画角色音色</span>
+          <span class="chip">English · 多语角色音色</span>
+          <span class="chip">日/法/西 · 自动切浏览器对应音色</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>音色 · 语气 · 多语言</span><span>06 / 10</span></div>
+  </section>
+
+  <!-- 07 一个工程设计 -->
+  <section class="slide slide--felt">
+    <div class="slide-inner">
+      <div class="eyebrow">一个代表设计 · 为什么需要它</div>
+      <h2 class="title">AI 会挂，孩子不能等</h2>
+      <p class="subtitle">模型会超时、会并发打满、会不可用。孩子正在做题，讲解不能突然消失。</p>
+      <div class="content fallback">
+        <div class="card" style="background:rgba(255,255,255,0.06);border-color:rgba(245,237,219,0.16);">
+          <h3 style="color:var(--onfelt);">它解决了什么</h3>
+          <p style="color:rgba(245,237,219,0.82);">四级回退：AI 不可用时，讲解自动降级到 Stockfish 或本地规则，孩子无感知，服务永不中断。</p>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:16px;">
+          <div class="fchain">
+            <span class="fnode hot">Ollama</span><span class="farr">→</span>
+            <span class="fnode hot">Qwen</span><span class="farr">→</span>
+            <span class="fnode">Stockfish</span><span class="farr">→</span>
+            <span class="fnode">本地规则</span>
+          </div>
+          <p class="subtitle" style="margin:0;">叠加超时、内容过滤、输出校验，让演示和真实使用都一样稳。</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>一个设计，讲清楚「为什么」和「解决了什么」</span><span>07 / 10</span></div>
+  </section>
+
+  <!-- 08 失败与迭代 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">失败与迭代</div>
+      <h2 class="title">两个真实的失败，怎么改好的</h2>
+      <p class="subtitle">不只有成功的结果，也有翻车和返工——这些过程才是项目最真实的部分。</p>
+      <div class="content ba">
+        <div class="ba-col">
+          <div class="ba-item">
+            <h3>AI 讲解夹着乱码</h3>
+            <div class="pair">
+              <div class="b">讲解里冒出 <b>**加粗**</b>、<b>1.</b> 编号，孩子看到的是乱码</div>
+              <div class="a">加了输出后处理 + 强化提示词，讲解干净了</div>
+            </div>
+          </div>
+          <div class="ba-item">
+            <h3>多人同时做题，AI 直接 500</h3>
+            <div class="pair">
+              <div class="b">三个孩子同时请求讲解，服务器报错</div>
+              <div class="a">四级回退兜底，服务永不中断</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card--gold" style="justify-content:center;">
+          <span class="kicker">我的体会</span>
+          <p style="font-size:16px;line-height:1.7;color:var(--ink);">模型不听话是常态——<br>提示词是「建议」而不是「保证」，<br>真正的稳健来自输出端的校验和兜底。</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>每一次失败，都是系统更健壮的机会</span><span>08 / 10</span></div>
+  </section>
+
+  <!-- 09 结果 -->
+  <section class="slide slide--light">
+    <div class="slide-inner">
+      <div class="eyebrow">结果与价值</div>
+      <h2 class="title">已经在真实服务，不只是想法</h2>
+      <div class="content">
+        <div class="stat">
+          <div class="s"><div class="big">已上线</div><div class="small">注册、学习、训练、AI 讲解、家长/老师管理</div></div>
+          <div class="s"><div class="big">获认可</div><div class="small">获渝中区国际象棋协会认可</div></div>
+          <div class="s"><div class="big">在服务</div><div class="small">帮助当地 4–10 岁初学者持续学习</div></div>
+        </div>
+        <div class="impact">
+          <div class="it"><span class="ico">🧒</span><span class="tx"><b>帮孩子</b>降低入门门槛：不被专业术语挡在门外。</span></div>
+          <div class="it"><span class="ico">👨‍👩‍👧</span><span class="tx"><b>帮家长</b>更好陪伴：不懂棋，也能看到练习和进步。</span></div>
+          <div class="it"><span class="ico">👩‍🏫</span><span class="tx"><b>帮老师</b>提高效率：课后练习变得可追踪、可反馈。</span></div>
+          <div class="it"><span class="ico">🏙️</span><span class="tx"><b>帮重庆</b>少儿国象普及：从渝中试点，服务更多区域。</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>社会效益优先</span><span>09 / 10</span></div>
+  </section>
+
+  <!-- 10 结尾 -->
+  <section class="slide slide--felt">
+    <div class="slide-inner">
+      <div class="eyebrow">下一步 · 找队友</div>
+      <h2 class="title">一座桥，想找一位「前端」一起搭</h2>
+      <p class="subtitle">下一步：收集真实反馈，让解释更准确、更温暖，扩展到更多课堂场景。</p>
+      <div class="content" style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+        <div style="background:rgba(217,164,65,0.14);border:1px solid rgba(217,164,65,0.4);border-radius:14px;padding:28px 34px;">
+          <div style="font-size:20px;font-weight:700;color:var(--onfelt);">正在找 · 前端队友</div>
+          <div style="font-size:16px;line-height:1.6;color:rgba(245,237,219,0.9);margin-top:8px;">一起把 Web 和 Flutter 移动端的体验做得更顺——棋盘交互、角色语音播放、学习进度的可视化。</div>
+        </div>
+        <div style="font-size:14px;color:rgba(245,237,219,0.7);">如果你也对教育或国际象棋感兴趣，那就更好了。</div>
+      </div>
+    </div>
+    <div class="foot"><span>Made with ♞ by a chess lover since age 6</span><span>10 / 10</span></div>
+  </section>
+
+</main>

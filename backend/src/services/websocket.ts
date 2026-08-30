@@ -627,8 +627,8 @@ export async function registerWebSocket(app: FastifyInstance): Promise<void> {
         if (members.has(userId)) {
           const room = db.gameRooms.find((r) => r.id === roomId);
           if (room && room.status === "playing") {
-            const isWhite = room.players.white?.userId === userId;
-            const isBlack = room.players.black?.userId === userId;
+            const isWhite: boolean = room.players.white?.userId === userId;
+            const isBlack: boolean = room.players.black?.userId === userId;
             if (isWhite || isBlack) {
               const opponentColor: "white" | "black" = isWhite ? "black" : "white";
               const opponentId = room.players[opponentColor]?.userId;

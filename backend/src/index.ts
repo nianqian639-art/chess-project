@@ -1,9 +1,13 @@
 import { buildServer } from "./server.js";
 import { closeDatabase } from "./services/db.js";
 import { existsSync } from "node:fs";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-if (existsSync(".env")) {
-  process.loadEnvFile?.(".env");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const envPath = resolve(__dirname, "..", ".env");
+if (existsSync(envPath)) {
+  process.loadEnvFile?.(envPath);
 }
 
 const port = Number(process.env.PORT ?? 8080);

@@ -5,7 +5,7 @@ const html = `<!doctype html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>棋伴 - 国际象棋在线学习平台</title>
+  <title>棋童 - 国际象棋在线学习平台</title>
   <style>
     :root {
       --ink: #251811;
@@ -381,7 +381,7 @@ const html = `<!doctype html>
   <main class="wrap">
     <section class="hero">
       <div>
-        <h1>棋伴</h1>
+        <h1>棋童</h1>
         <p>Mac 本地国际象棋训练营：Stockfish 主导棋力，Ollama qwen3:8b 负责中文讲解。</p>
       </div>
       <div class="crest">♜</div>
@@ -407,7 +407,7 @@ const html = `<!doctype html>
 
     <!-- ── Home Dashboard ── -->
     <section class="panel active" id="homeView">
-      <h2>♜ 棋伴</h2>
+      <h2>♜ 棋童</h2>
       <div class="sub">选择你想要的训练模式，层层深入提升棋艺</div>
       <div class="dashboard-grid" id="dashboardGrid">
         <div class="dash-card" data-target="learningCenter">
@@ -802,8 +802,8 @@ const html = `<!doctype html>
 
   <!-- Footer -->
   <footer style="text-align:center;padding:30px 18px;color:rgba(255,255,255,.45);font-size:12px;position:relative;">
-    <div style="margin-bottom:8px;font-size:16px;color:rgba(255,255,255,.6);">♜ 棋伴</div>
-    <div>棋伴 · 国际象棋在线学习平台</div>
+    <div style="margin-bottom:8px;font-size:16px;color:rgba(255,255,255,.6);">♜ 棋童</div>
+    <div>棋童 · 国际象棋在线学习平台</div>
     <div style="margin-top:6px;">学习中心 · 题库训练 · 人机对战 · 双人对战 · 公开赛 · 积分榜</div>
   </footer>
 

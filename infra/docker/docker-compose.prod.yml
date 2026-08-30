@@ -12,10 +12,8 @@ services:
       PORT: "8080"
       HOST: "0.0.0.0"
       NODE_ENV: "production"
-      OLLAMA_BASE_URL: "http://ollama:11434"
-      OLLAMA_MODEL: "qwen3:8b"
       STOCKFISH_SERVICE_URL: "http://engine:8081"
-      DOMAIN: "chesstong.com"
+      DOMAIN: "chesstong.top"
     env_file:
       - ../../backend/.env.production
     volumes:
@@ -24,7 +22,6 @@ services:
       - "127.0.0.1:8080:8080"
     depends_on:
       - engine
-      - ollama
     networks:
       - chesstong-net
 
@@ -42,20 +39,6 @@ services:
       - "127.0.0.1:8081:8081"
     networks:
       - chesstong-net
-
-  # ── Ollama (AI Explanations) ─────────────────────────────
-  ollama:
-    image: ollama/ollama:latest
-    container_name: chesstong-ollama
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:11434:11434"
-    volumes:
-      - ollama-data:/root/.ollama
-    networks:
-      - chesstong-net
-    # After first start, pull the model:
-    # docker exec chesstong-ollama ollama pull qwen3:8b
 
   # ── Nginx Reverse Proxy ──────────────────────────────────
   nginx:
@@ -90,7 +73,6 @@ services:
 
 volumes:
   db-data:
-  ollama-data:
   certbot-www:
   certbot-etc:
 

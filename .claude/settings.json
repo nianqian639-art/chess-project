@@ -10,10 +10,35 @@
       "Bash(curl -s http://localhost:8080/health)",
       "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}\" http://localhost:8080/demo)",
       "Bash(curl -s http://localhost:8080/demo)",
-      "Bash(chmod +x \"/Users/daweijunwang/chess project/backend/node_modules/.bin/\"*)"
+      "Bash(chmod +x \"/Users/daweijunwang/chess project/backend/node_modules/.bin/\"*)",
+      "Bash(git check-ignore *)",
+      "Bash(DASHSCOPE_API_KEY=\"\" TTS_PROVIDER=dashscope PORT=8091 node node_modules/tsx/dist/cli.mjs src/index.ts)",
+      "Bash(echo \"started pid $!\")",
+      "Bash(DASHSCOPE_API_KEY=\"\" npx tsx -e \"import { synth } from './src/services/tts.ts'; \\(async \\(\\) => { const r = await synth\\('你好，我是棋伴', 'story'\\); console.log\\('no-key result:', JSON.stringify\\(r\\)\\); }\\)\\(\\);\")",
+      "WebSearch",
+      "Bash(grep -vE '^\\\\s*$')",
+      "Bash(curl -s -w \"\\\\nHTTP %{http_code}\\\\n\" \"http://127.0.0.1:8080/health\")",
+      "Read(//private/tmp/**)",
+      "Bash(break)",
+      "Bash(curl -s -w \" [HTTP %{http_code}]\\\\n\" \"http://127.0.0.1:8080/health\")",
+      "Bash(cd \"/Users/daweijunwang/chess project/backend\" && echo \"=== 后端日志里 /tts 相关的请求 ===\" && grep -iE \"/tts|POST|reqId\" /tmp/chesstong-backend.log 2>/dev/null | tail -30; echo \"=== 日志总行数 ===\"; wc -l < /tmp/chesstong-backend.log 2>/dev/null)",
+      "Bash(curl -s \"http://127.0.0.1:8080/js/app.js\")",
+      "Bash(ps eww *)",
+      "Bash(sed -E 's/\\(sk-[A-Za-z0-9_.-]{8}\\)[A-Za-z0-9_.-]+/\\\\1****/')",
+      "Bash(sed -E 's/\\(sk-[A-Za-z0-9_.-]{6}\\)[A-Za-z0-9_.-]+/\\\\1****/g')",
+      "Bash(cd \"/Users/daweijunwang/chess project/backend\" && echo \"=== 最近的 POST /tts 请求（用户点击后）===\" && grep -E '\"method\":\"POST\"|/tts' /tmp/chesstong-backend.log | tail -15; echo \"=== '棋伴' 出现的地方 ===\" && grep -rn \"棋伴\" public/js/common.js | head -40)",
+      "Bash(python3 -c ' *)",
+      "Bash(cd \"/Users/daweijunwang/chess project/backend\" && echo \"=== POST /tts 请求 ===\" && grep -oE '\"method\":\"POST\",\"url\":\"/tts\"' /tmp/chesstong-backend.log | wc -l | xargs echo \"POST /tts 次数:\" && echo \"=== GET /tts 音频请求 ===\" && grep -oE '\"method\":\"GET\",\"url\":\"/tts/[a-f0-9]+\\\\.mp3\"' /tmp/chesstong-backend.log | wc -l | xargs echo \"GET /tts 音频次数:\" && echo \"=== POST /tts 返回 200 的次数 ===\" && grep -E '\"url\":\"/tts\"' /tmp/chesstong-backend.log | grep -c '\"statusCode\":200' | xargs echo \"返回200次数:\" && echo \"=== 最近 3 条 /tts 相关（原始）===\" && grep -E '/tts' /tmp/chesstong-backend.log | tail -3 | cut -c1-160)",
+      "Bash(curl -s -o /dev/null -w \"health HTTP %{http_code}\\\\n\" \"http://127.0.0.1:8080/health\")",
+      "Bash(python3 -c \"import pptx; print\\('python-pptx', pptx.__version__\\)\")",
+      "Bash(python3 -c \"import docx; print\\('python-docx 可用'\\)\")",
+      "Bash(python3 -m pip install python-pptx --quiet)",
+      "Bash(python3 /tmp/build_portfolio_pptx.py)"
     ],
     "additionalDirectories": [
-      "/Users/daweijunwang/chess project/.claude"
+      "/Users/daweijunwang/chess project/.claude",
+      "/tmp",
+      "/private/tmp"
     ]
   }
 }

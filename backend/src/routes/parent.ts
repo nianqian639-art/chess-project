@@ -60,7 +60,8 @@ function getWeekRange(date: Date): { start: string; end: string } {
 
 async function generateWeeklyReport(
   studentId: string,
-  parentId: string
+  parentId: string,
+  language: "zh" | "en" | "ja" | "fr" | "es" = "zh"
 ): Promise<{
   solveCount: number; battleCount: number;
   pvpWins: number; pvpLosses: number; pvpDraws: number;
@@ -128,6 +129,7 @@ async function generateWeeklyReport(
       solveCount, battleCount, pvpWins, pvpLosses, pvpDraws,
       pointsGained, currentPoints: student.points,
       currentRank: rank.piece + rank.title,
+      language,
     });
     aiCommentary = result.text || "";
     suggestions = result.text
@@ -378,7 +380,9 @@ export const parentRoutes: FastifyPluginAsync = async (app) => {
     }
 
     try {
-      const data = await generateWeeklyReport(id, userId);
+      const rawLanguage = request.headers["x-app-language"];
+      const language = typeof rawLanguage === "string" && ["zh", "en", "ja", "fr", "es"].includes(rawLanguage) ? rawLanguage as "zh" | "en" | "ja" | "fr" | "es" : "zh";
+      const data = await generateWeeklyReport(id, userId, language);
       const { end } = getWeekRange(new Date());
       const report = {
         id: crypto.randomUUID(),

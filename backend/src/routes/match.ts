@@ -29,6 +29,10 @@ const suggestBody = z.object({
   fen: z.string(),
   difficulty: z.number().min(1).max(20)
 });
+const requestLanguage = (request: { headers: Record<string, string | string[] | undefined> }) => {
+  const language = request.headers["x-app-language"];
+  return typeof language === "string" && ["zh", "en", "ja", "fr", "es"].includes(language) ? language as "zh" | "en" | "ja" | "fr" | "es" : "zh";
+};
 
 export const matchRoutes: FastifyPluginAsync = async (app) => {
   // Get available battle variants
@@ -118,7 +122,8 @@ export const matchRoutes: FastifyPluginAsync = async (app) => {
       pgn: body.pgn,
       localSummary: local.summary,
       keyMoves: local.keyMoves,
-      audience
+      audience,
+      language: requestLanguage(request)
     });
 
     return {
