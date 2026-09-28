@@ -16,9 +16,12 @@ build/
 # Misc
 .env
 .DS_Store
+*.swp
 
 # Generated TTS audio cache (runtime, avoid committing synthesized mp3)
 backend/data/tts/
+backend/data/*.db-shm
+backend/data/*.db-wal
 
 # Large Stockfish runtime assets
 # Keep these files locally, but do not commit them to GitHub (GitHub rejects

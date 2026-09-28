@@ -13,7 +13,7 @@ services:
       HOST: "0.0.0.0"
       NODE_ENV: "production"
       STOCKFISH_SERVICE_URL: "http://engine:8081"
-      DOMAIN: "chesstong.top"
+      DOMAIN: "${DOMAIN:-chesstong.top}"
     env_file:
       - ../../backend/.env.production
     volumes:

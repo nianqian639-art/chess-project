@@ -1,8 +1,8 @@
 FROM node:20-bookworm-slim AS base
 WORKDIR /app
 RUN apt-get update && apt-get install -y stockfish && rm -rf /var/lib/apt/lists/*
-COPY package.json tsconfig.json ./
-RUN npm install
+COPY package.json package-lock.json tsconfig.json ./
+RUN npm ci
 COPY src ./src
 RUN npm run build
 EXPOSE 8081

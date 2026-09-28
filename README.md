@@ -4,7 +4,7 @@
 >
 > 让国际象棋更容易听懂，也更容易坚持。
 
-[![Website](https://img.shields.io/badge/Website-chesstong.com-brightgreen)](https://chesstong.com)
+[![Website](https://img.shields.io/badge/Website-chesstong.top-brightgreen)](https://chesstong.top)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Node](https://img.shields.io/badge/Node-22%2B-339933)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6)](https://www.typescriptlang.org/)
@@ -208,7 +208,7 @@ cd backend && cp .env.example .env && npm install && npm run dev
 ### 生产部署
 
 ```bash
-./deploy.sh --domain chesstong.com --email admin@chesstong.com
+./deploy.sh --domain chesstong.top --email admin@chesstong.top
 ```
 
 ---
@@ -232,7 +232,7 @@ cd backend && cp .env.example .env && npm install && npm run dev
 
 | 阶段 | 状态 | 说明 |
 |------|------|------|
-| ✅ **Web 平台上线** | 已完成 | 全部功能模块可用，部署于 chesstong.com |
+| ✅ **Web 平台上线** | 已完成 | 全部功能模块可用，部署于 https://chesstong.top |
 | ✅ **移动端 MVP** | 已完成 | Flutter App 含 8 个核心页面 |
 | ✅ **AI 集成** | 已完成 | Ollama/Qwen 双模型 + Stockfish 引擎 |
 | ✅ **实时对战** | 已完成 | WebSocket 房间 + 棋钟 + 断线重连 |

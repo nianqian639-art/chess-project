@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────
 # Chesstong Production Deploy Script
-# Usage: ./deploy.sh [--skip-build] [--skip-cert] [--domain chesstong.com]
+# Usage: ./deploy.sh [--skip-build] [--skip-cert] [--domain chesstong.top]
 # ─────────────────────────────────────────────────────────
 set -euo pipefail
 
-DOMAIN="${DOMAIN:-chesstong.com}"
-EMAIL="${EMAIL:-admin@chesstong.com}"
+DOMAIN="${DOMAIN:-chesstong.top}"
+EMAIL="${EMAIL:-admin@chesstong.top}"
 SKIP_BUILD=false
 SKIP_CERT=false
 
@@ -26,11 +26,33 @@ INFRA_DIR="$PROJECT_ROOT/infra/docker"
 NGINX_DIR="$PROJECT_ROOT/infra/nginx"
 PROD_NGINX_CONF="$NGINX_DIR/chesstong.com.conf"
 HTTP_ONLY_NGINX_CONF="$NGINX_DIR/chesstong.com.http-only.conf"
-NGINX_BACKUP_CONF="$NGINX_DIR/chesstong.com.conf.deploy-backup"
+NGINX_BACKUP_CONF=""
+
+require_command() {
+    command -v "$1" >/dev/null 2>&1 || {
+        echo "Missing required command: $1" >&2
+        exit 1
+    }
+}
+
+require_command docker
+require_command curl
+
+if [ ! -f "$BACKEND_DIR/.env.production" ]; then
+    echo "Missing $BACKEND_DIR/.env.production" >&2
+    exit 1
+fi
+
+if ! grep -Eq '^(QWEN_API_KEY|DASHSCOPE_API_KEY)=.+$' "$BACKEND_DIR/.env.production"; then
+    echo "Set QWEN_API_KEY or DASHSCOPE_API_KEY in $BACKEND_DIR/.env.production before deploying." >&2
+    exit 1
+fi
 
 restore_nginx_config() {
-    if [ -f "$NGINX_BACKUP_CONF" ]; then
-        mv "$NGINX_BACKUP_CONF" "$PROD_NGINX_CONF"
+    if [ -n "$NGINX_BACKUP_CONF" ] && [ -f "$NGINX_BACKUP_CONF" ]; then
+        cp "$NGINX_BACKUP_CONF" "$PROD_NGINX_CONF"
+        rm -f "$NGINX_BACKUP_CONF"
+        NGINX_BACKUP_CONF=""
     fi
 }
 
@@ -65,10 +87,11 @@ echo "  -> Docker images built."
 echo ""
 echo "[3/5] Starting containers..."
 if [ "$SKIP_CERT" = false ]; then
+    NGINX_BACKUP_CONF="$(mktemp "${TMPDIR:-/tmp}/chesstong-nginx.XXXXXX")"
     cp "$PROD_NGINX_CONF" "$NGINX_BACKUP_CONF"
-    sed "s/chesstong.com/$DOMAIN/g" "$HTTP_ONLY_NGINX_CONF" > "$PROD_NGINX_CONF"
+    sed "s/chesstong\.top/$DOMAIN/g" "$HTTP_ONLY_NGINX_CONF" > "$PROD_NGINX_CONF"
 fi
-docker compose -f docker-compose.prod.yml up -d backend engine ollama nginx
+docker compose -f docker-compose.prod.yml up -d backend engine nginx
 echo "  -> Containers started."
 
 # ── Step 4: Obtain SSL certificate ────────────────────
@@ -87,8 +110,14 @@ if [ "$SKIP_CERT" = false ]; then
         --no-eff-email \
         -d "$DOMAIN" -d "www.$DOMAIN"
 
-    mv "$NGINX_BACKUP_CONF" "$PROD_NGINX_CONF"
-    trap - EXIT
+    restore_nginx_config
+
+    # Render the permanent HTTPS config for the same domain used by Certbot.
+    NGINX_BACKUP_CONF="$(mktemp "${TMPDIR:-/tmp}/chesstong-nginx.XXXXXX")"
+    cp "$PROD_NGINX_CONF" "$NGINX_BACKUP_CONF"
+    sed "s/chesstong\.top/$DOMAIN/g" "$NGINX_BACKUP_CONF" > "$PROD_NGINX_CONF"
+    rm -f "$NGINX_BACKUP_CONF"
+    NGINX_BACKUP_CONF=""
 
     docker compose -f docker-compose.prod.yml restart nginx
 
@@ -123,8 +152,7 @@ echo "============================================"
 echo " Deployment complete!"
 echo ""
 echo " Next steps:"
-echo "   1. If using Ollama, pull the model:"
-echo "      docker exec chesstong-ollama ollama pull qwen3:8b"
+echo "   1. Check QWEN_API_KEY in $BACKEND_DIR/.env.production"
 echo ""
 echo "   2. Check logs:"
 echo "      docker compose -f $INFRA_DIR/docker-compose.prod.yml logs -f"
